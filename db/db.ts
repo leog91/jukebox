@@ -1,0 +1,16 @@
+export const Tags = [
+    "ALBUM",
+    "COVER",
+    "SONG",
+    "LIVE",
+    "ANALOG",
+    "RADIO",
+    "VIDEO",
+    "TECHNO",
+    "VINYL",
+    "CHILL",
+    "PIANO",
+    "VOICE",
+    "JUNGLE",
+    "EDM",
+] as const;
