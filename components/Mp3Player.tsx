@@ -1,8 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
+
+type Mode = "MSC" | "REC" | "RPL" | "FM" | "SYS";
 
 export const Mp3Player = () => {
+  const [mode, setMode] = useState<Mode>("MSC");
+
   const menuOptionShadow = (
-    <div className="bg-black absolute rounded-md w-7 left-px top-px h-[50px]"></div>
+    <div className="bg-black absolute rounded-md w-8 left-px top-px h-[50px]"></div>
   );
 
   return (
@@ -13,33 +17,52 @@ export const Mp3Player = () => {
           <div>MP3</div>
         </div>
         <div className="bg-teal-600 text-black text-center gap-2 p-2 flex ">
-          <div className="relative flex flex-col w-7 h-[50px] border-2 border-black rounded-md">
+          <div
+            className="cursor-pointer relative flex flex-col w-8 h-[50px] border-2 border-black rounded-md"
+            onClick={() => setMode("MSC")}
+          >
+            {mode === "MSC" && menuOptionShadow}
             <div className="border-b-2 relative bg-teal-600 text-lg bg border-black">
               🎵
             </div>
             <div className="text-xs relative bg-teal-600">MSC</div>
           </div>
 
-          <div className="relative flex flex-col w-7 h-[50px] border-2 border-black rounded-md ">
-            {menuOptionShadow}
+          <div
+            className="cursor-pointer relative flex flex-col w-8 h-[50px] border-2 border-black rounded-md "
+            onClick={() => setMode("REC")}
+          >
+            {mode === "REC" && menuOptionShadow}
             <div className="border-b-2 relative bg-teal-600 text-lg bg border-black">
               🎤
             </div>
             <div className="text-xs relative bg-teal-600">REC</div>
           </div>
-          <div className="relative flex flex-col w-7 h-[50px] border-2 border-black rounded-md ">
+          <div
+            className="cursor-pointer relative flex flex-col w-8 h-[50px] border-2 border-black rounded-md "
+            onClick={() => setMode("RPL")}
+          >
+            {mode === "RPL" && menuOptionShadow}
             <div className="border-b-2 relative bg-teal-600 text-lg bg border-black">
               🗣️
             </div>
             <div className="text-xs relative bg-teal-600">RPL</div>
           </div>
-          <div className="relative flex flex-col w-7 h-[50px] border-2 border-black rounded-md ">
+          <div
+            className="cursor-pointer relative flex flex-col w-8 h-[50px] border-2 border-black rounded-md "
+            onClick={() => setMode("FM")}
+          >
+            {mode === "FM" && menuOptionShadow}
             <div className="border-b-2 relative bg-teal-600 text-lg bg border-black">
               📻
             </div>
             <div className="text-xs relative bg-teal-600">FM</div>
           </div>
-          <div className="relative flex flex-col w-7 h-[50px] border-2 border-black rounded-md ">
+          <div
+            className="cursor-pointer relative flex flex-col w-8 h-[50px] border-2 border-black rounded-md "
+            onClick={() => setMode("SYS")}
+          >
+            {mode === "SYS" && menuOptionShadow}
             <div className="border-b-2 relative bg-teal-600 text-lg bg border-black">
               ⚙️
             </div>
