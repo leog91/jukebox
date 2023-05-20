@@ -249,9 +249,9 @@ export default function Jukebox() {
 
   return (
     <main
-      className={`flex min-h-screen flex-col items-center justify-between p-24 ${inter.className}`}
+      className={`flex min-h-screen flex-col items-center justify-between  ${inter.className}`}
     >
-      <div className="h-screen   bg-slate-700">
+      <div className="h-screen  py-1   bg-slate-700">
         <div className="flex  flex-col items-center bg-slate-700 text-white">
           <p className="mb-2 w-full border-b-4 border-b-slate-400  text-center text-3xl  font-black">
             JUKEBOX

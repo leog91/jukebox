@@ -17,6 +17,20 @@ export const musicList: Media[] = [
         tags: ["ALBUM", "PIANO"],
     },
 
+
+    {
+        src: "nf4IabkxirQ",
+        title: "strongboi - fool around (live)",
+        tags: ["ANALOG", "LIVE"],
+    },
+
+
+    {
+        src: "ZDtjDThed7o",
+        title: "Sting - Panthéon-CMN - 50 ans de FIP (live) - @arteconcert",
+        tags: ["ANALOG", "LIVE",],
+    },
+
     {
         src: "QVTWvOzktbE",
         title: "Deep Lo-Fi House Mix #2",
