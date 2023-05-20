@@ -11,7 +11,7 @@ export default function PlayList() {
           <div
             className={`h-9 mr-1 w-1 ${i % 5 === 1 ? "bg-white" : ""} `}
           ></div>
-          <div className="flex  items-center rounded-md  cursor-pointer hover:bg-neutral-500  ">
+          <div className="flex w-full  items-center   cursor-pointer hover:bg-neutral-500  ">
             {/* <div className="mr-2 rounded-full  bg-neutral-200 w-4 h-4 animate-[ping_2s_ease-in-out_infinite]"></div> */}
             <picture>
               <img
@@ -21,12 +21,10 @@ export default function PlayList() {
                 src={`https://i.ytimg.com/vi_webp/${s.src}/default.webp`}
               />
             </picture>
-            <div className="ml-4"> {s.title}</div>
+            <div className="ml-4 s"> {s.title}</div>
           </div>
         </div>
       ))}
     </div>
   );
 }
-
-const asd = `asdsdd`;
