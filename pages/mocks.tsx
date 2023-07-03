@@ -1,8 +1,9 @@
 import { Mp3Player } from "@/components/Mp3Player";
+import { MusicPick } from "@/components/MusicPick";
 import PlayList from "@/components/PlayList";
 import React, { useState } from "react";
 
-type Component = "PLAYLIST" | "MP3PLAYER";
+type Component = "PLAYLIST" | "MP3PLAYER" | "MUSIC_PICK";
 
 const ShowComponent = ({
   component,
@@ -71,6 +72,24 @@ export default function Mocks() {
       ) : (
         <ShowComponent
           component="PLAYLIST"
+          setShowComponent={setShowComponent}
+          showingComponents={showComponent}
+        />
+      )}
+
+      {showComponent.includes("MUSIC_PICK") ? (
+        <div className=" flex flex-col w-full items-center">
+          <HideComponent
+            component="MUSIC_PICK"
+            setShowComponent={setShowComponent}
+            showingComponents={showComponent}
+          />
+
+          <MusicPick />
+        </div>
+      ) : (
+        <ShowComponent
+          component="MUSIC_PICK"
           setShowComponent={setShowComponent}
           showingComponents={showComponent}
         />
