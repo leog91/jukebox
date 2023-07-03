@@ -1,0 +1,44 @@
+[
+  { "artist": "iron maiden", "tag": ["metal"] },
+  { "artist": "metallica", "tag": ["metal", "rock"] },
+  { "artist": "wos", "tag": ["arg"] },
+  { "artist": "STP", "tag": ["rock"] },
+  { "artist": "Gorillas", "tag": ["alternative"] },
+  { "artist": "arctic monkeys", "tag": ["rock"] },
+  { "artist": "pearl jam", "tag": ["rock"] },
+  { "artist": "divididos", "tag": ["arg", "rock"] },
+  {
+    "artist": "Patricio Rey y sus Redonditos de Ricota",
+    "tag": ["arg", "rock"]
+  },
+  { "artist": "incubus", "tag": ["rock"] },
+
+  { "artist": "System of a Down", "tag": ["rock"] },
+
+  { "artist": "Soda Stereo", "tag": ["rock", "arg"] },
+
+  { "artist": "Pink Floyd", "tag": ["rock"] },
+  { "artist": "Placebo", "tag": ["rock"] },
+
+  { "artist": "Muse", "tag": ["rock"] },
+
+  { "artist": "El Kuelgue", "tag": ["arg"] },
+
+  { "artist": "Dancing mood", "tag": ["arg"] },
+
+  { "artist": "Jimi Hendrix", "tag": ["rock"] },
+  { "artist": "disturbed", "tag": ["rock"] },
+  { "artist": "Rocket Juice & the Moon", "tag": ["alternative"] },
+  { "artist": "The Clash", "tag": ["rock"] },
+  { "artist": "Radiohead", "tag": ["alternative", "rock"] },
+  { "artist": "Babasónicos", "tag": ["arg", "rock"] },
+  { "artist": "Los Natas", "tag": ["arg", "rock", "stoner"] },
+  { "artist": "Louta", "tag": ["arg"] },
+  { "artist": "qotsa", "tag": ["rock", "stoner"] },
+  { "artist": "Royal Blood", "tag": ["rock"] },
+  { "artist": "Deftones", "tag": ["rock"] },
+  { "artist": "dancing mood", "tag": ["rock", "arg"] },
+  { "artist": "sumo", "tag": ["rock", "arg"] },
+  { "artist": "Adriatique", "tag": ["EDM"] },
+  { "artist": "Boris Brejcha", "tag": ["EDM"] }
+]
