@@ -19,12 +19,23 @@ export const musicList: Media[] = [
 
 
     {
+        src: "DuPXUZKy0JQ",
+        title: "Velvet Revolver - 2005-06-05 Rock am Ring, Germany",
+        tags: ["LIVE", "CONCERT", "ROCK"],
+    },
+
+
+
+    {
         src: "nf4IabkxirQ",
         title: "strongboi - fool around (live)",
         tags: ["ANALOG", "LIVE"],
     },
-
-
+    {
+        src: "fn-4RbxXThE",
+        title: "Bonobo Live At Royal Albert Hall",
+        tags: ["EDM", "LIVE"],
+    },
     {
         src: "ZDtjDThed7o",
         title: "Sting - Panthéon-CMN - 50 ans de FIP (live) - @arteconcert",
