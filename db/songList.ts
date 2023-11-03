@@ -19,6 +19,141 @@ export const musicList: Media[] = [
 
 
     {
+        src: "bMCiAKNUpTY",
+        title: "Ólafur Arnalds live from Hafursey, in Iceland for Cercle",
+        tags: ["ANALOG", "PIANO"],
+    },
+
+
+    {
+        src: "VJFCAvYAYFs",
+        title: "Divididos | Tilcara: El Recital (Video)",
+        tags: ["ANALOG", "ROCK"],
+    },
+
+
+    {
+        src: "tpXV75zI1YY",
+        title: "Dreamy Sunset House Mix in a New York Park | Tinzo & Jojo",
+        tags: ["ANALOG", "EDM"],
+    },
+
+
+
+
+
+    {
+        src: "o7DOnWUGn0U",
+        title: "John Scofield - Solo | Elbphilharmonie Sessions",
+        tags: ["ANALOG",],
+    },
+
+
+
+    {
+        src: "ca_cKWWzZgs",
+        title: "TWO LANES - Live Performance (Piano Set)",
+        tags: ["ANALOG", "PIANO"],
+    },
+
+
+
+
+    {
+        src: "AzsuoMeWXjg",
+        title: "Reggae Versions / Santa Monica LiveSession",
+        tags: ["ANALOG",],
+    },
+
+
+    {
+        src: "C5Z-jyqf8ew",
+        title: "Gilberto Gil | Concerto de Cordas & Máquinas de Ritmo (Show Completo)",
+        tags: ["ANALOG",],
+    },
+
+
+
+    {
+        src: "Mt-hf8yrZxA",
+        title: "Reggae Versions - Live Session 2023 en @sungrilamusic (Shot By @enryfilms )",
+        tags: ["ANALOG",],
+    },
+
+
+
+    {
+        src: "Xvm_yUjvPR4",
+        title: "MARIANO MELLINO | DJ Set from Cascada Grande, La Cumbrecita, Argentina | BEATS OF NATURE",
+        tags: ["EDM"],
+    },
+    {
+        src: "PQtjWKA1U5o",
+        title: "Progressive House mix by Valentina Bravo",
+        tags: ["EDM"],
+    },
+
+
+
+    {
+        src: "vI5UDXnotYU",
+        title: "Nick Warren - Space Miami 2023",
+        tags: ["EDM"],
+    },
+
+
+    {
+        src: "DNLMxLhr6qQ",
+        title: "BÁR TURNÉ I Jazzbois",
+        tags: ["ANALOG",],
+    },
+
+
+
+    {
+        src: "Fj3l7olkmGY",
+        title: "Dante Spinetta - Damasco Session 2",
+        tags: ["ANALOG"],
+    },
+
+
+
+
+
+
+    {
+        src: "j0WWCigBkr4",
+        title: "Discos Esenciales Bocanada de Gustavo Cerati por Lisandro Aristimuño - Audio Calidad Master HQ",
+        tags: ["ALBUM"],
+    },
+
+    {
+        src: "MzYD56hKF-8",
+        title: "高中正義『Masayoshi Takanaka』– 虹伝説 『The Rainbow Goblins』[1981]",
+        tags: ["ALBUM"],
+    },
+
+    {
+        src: "6DNWTYp1gbs",
+        title: "Incubus - Morning View Livestream 10/23/2021",
+        tags: ["ALBUM", "LIVE", "ROCK"],
+    },
+
+
+
+
+
+    {
+        src: "GRgA_FmAEgU",
+        title: "AMBIENT TECHNO || mix 011 by Rob Jenkins",
+        tags: ["EDM"],
+    },
+
+
+
+
+
+    {
         src: "DuPXUZKy0JQ",
         title: "Velvet Revolver - 2005-06-05 Rock am Ring, Germany",
         tags: ["LIVE", "CONCERT", "ROCK"],
