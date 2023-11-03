@@ -217,7 +217,7 @@ const Youtube = () => {
             key={m.src}
           >
             {" "}
-            <div className="px-2"> {m.title} </div>{" "}
+            <div className="px-2 truncate"> {m.title} </div>{" "}
             {/* <div>
               {" "}
               {m.tags.map((t) => (
