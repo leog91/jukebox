@@ -1,4 +1,6 @@
-import { MusicPick } from "@/components/MusicPick";
+"use client";
+
+import { MusicPick } from "@/src/components/MusicPick";
 import React from "react";
 
 function Pick() {

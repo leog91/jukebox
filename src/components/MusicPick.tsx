@@ -1,5 +1,5 @@
 import { useState } from "react";
-import artistsdb from "../db/artist.json";
+import artistsdb from "../../db/artist.json";
 
 const artists = artistsdb.sort((a, b) => {
   const nameA = a.artist.toUpperCase();

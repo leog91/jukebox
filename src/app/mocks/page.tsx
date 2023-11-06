@@ -1,6 +1,8 @@
-import { Mp3Player } from "@/components/Mp3Player";
-import { MusicPick } from "@/components/MusicPick";
-import PlayList from "@/components/PlayList";
+"use client";
+
+import { Mp3Player } from "@/src/components/Mp3Player";
+import { MusicPick } from "@/src/components/MusicPick";
+import PlayList from "@/src/components/PlayList";
 import React, { useState } from "react";
 
 type Component = "PLAYLIST" | "MP3PLAYER" | "MUSIC_PICK";
