@@ -203,6 +203,44 @@ export const musicList: Media[] = [
     },
 
     {
+        src: "c47eVXQSRrk",
+        title: "8 Hours Joris Voorn at Fabric London 09.12.23",
+        tags: ["EDM"],
+    },
+
+
+
+    {
+        src: "EhGCsaiVm0I",
+        title: "Jazzbois - Roots Joint // Mellow High Live @ Roots Budapest",
+        tags: ["LIVE"],
+    },
+
+
+    {
+        src: "GPuZwMmd4YI",
+        title: "Adriatique Live @ Printworks Closing Weekend",
+        tags: ["EDM"],
+    },
+
+
+
+    {
+        src: "BNig6xG36i4",
+        title: "Masayoshi Takanaka – All Of Me (1979)",
+        tags: ["ALBUM"],
+    },
+
+
+
+    {
+        src: "36Dopq92RdA",
+        title: "Jamiroquai - Live at the Jazz Cafe Wednesday 25 October 2006, Camden, London",
+        tags: ["LIVE"],
+    },
+
+
+    {
         src: "J0yHr-h0apc",
         title: "Best Acid Jazz and Funky Instrumentals Vol 3 - 2 h. Non Stop 2023",
         tags: ["ALBUM", "LIVE"],

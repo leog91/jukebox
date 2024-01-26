@@ -1,17 +1,24 @@
 [
-  { "artist": "iron maiden", "tag": ["metal"] },
-  { "artist": "metallica", "tag": ["metal", "rock"] },
+  { "artist": "Iron Maiden", "tag": ["metal"] },
+  { "artist": "Metallica", "tag": ["metal", "rock"] },
   { "artist": "wos", "tag": ["arg"] },
   { "artist": "STP", "tag": ["rock"] },
   { "artist": "Gorillas", "tag": ["alternative"] },
-  { "artist": "arctic monkeys", "tag": ["rock"] },
-  { "artist": "pearl jam", "tag": ["rock"] },
-  { "artist": "divididos", "tag": ["arg", "rock"] },
+  { "artist": "Arctic Monkeys", "tag": ["rock"] },
+  { "artist": "Pearl Jam", "tag": ["rock"] },
+  { "artist": "Divididos", "tag": ["arg", "rock"] },
   {
     "artist": "Patricio Rey y sus Redonditos de Ricota",
     "tag": ["arg", "rock"]
   },
   { "artist": "incubus", "tag": ["rock"] },
+  { "artist": "korn", "tag": ["Nu metal"] },
+  { "artist": "Peces Raros", "tag": ["rock", "arg"] },
+  { "artist": "Groove Armada", "tag": ["EDM"] },
+  {
+    "artist": "Damon Albarn",
+    "tag": ["alternative", "rock", "EDM", "Britpop"]
+  },
 
   { "artist": "System of a Down", "tag": ["rock"] },
 
@@ -21,8 +28,12 @@
   { "artist": "Placebo", "tag": ["rock"] },
 
   { "artist": "Muse", "tag": ["rock"] },
+  { "artist": "Paul Gilbert", "tag": ["rock"] },
 
   { "artist": "El Kuelgue", "tag": ["arg"] },
+  { "artist": "Tame Impala", "tag": ["psychedelic", "rock"] },
+
+  { "artist": "Pixies", "tag": ["alternative", "rock", "indie"] },
 
   { "artist": "Dancing mood", "tag": ["arg"] },
 
@@ -34,10 +45,10 @@
   { "artist": "Babasónicos", "tag": ["arg", "rock"] },
   { "artist": "Los Natas", "tag": ["arg", "rock", "stoner"] },
   { "artist": "Louta", "tag": ["arg"] },
-  { "artist": "qotsa", "tag": ["rock", "stoner"] },
+  { "artist": "QOTSA", "tag": ["rock", "stoner"] },
   { "artist": "Royal Blood", "tag": ["rock"] },
   { "artist": "Deftones", "tag": ["rock"] },
-  { "artist": "dancing mood", "tag": ["rock", "arg"] },
+
   { "artist": "sumo", "tag": ["rock", "arg"] },
   { "artist": "Adriatique", "tag": ["EDM"] },
   { "artist": "Boris Brejcha", "tag": ["EDM"] }
