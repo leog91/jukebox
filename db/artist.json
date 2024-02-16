@@ -24,8 +24,50 @@
 
   { "artist": "Soda Stereo", "tag": ["rock", "arg"] },
 
+  { "artist": "Foster the People", "tag": ["Indie pop", "alternative rock"] },
+
   { "artist": "Pink Floyd", "tag": ["rock"] },
+
+  { "artist": "Björk", "tag": ["Art pop", "avant-garde"] },
+
+  {
+    "artist": "Soundgarden",
+    "tag": ["Grunge", " hard rock", "alternative rock"]
+  },
+
+  {
+    "artist": "Greta Van Fleet",
+    "tag": ["Hard rock", "blues rock", "progressive rock"]
+  },
+
+  {
+    "artist": "Illya Kuryaki and the Valderramas",
+    "tag": ["Hip hop", "pop", "rock"]
+  },
+
+  {
+    "artist": "Pescado Rabioso",
+    "tag": ["Blues rock", "hard rock", "psychedelic rock"]
+  },
+
+  {
+    "artist": "The Mars Volta",
+    "tag": ["Progressive rock", "experimental rock"]
+  },
+
+  { "artist": "Dante Spinetta", "tag": ["Rap", "Soul", "R&B"] },
+
+  {
+    "artist": "Nine Inch Nails",
+    "tag": ["Industrial rock", "alternative rock"]
+  },
+
   { "artist": "Placebo", "tag": ["rock"] },
+
+  {
+    "artist": "Tool",
+    "tag": ["Alternative", "metal", "art rock", "progressive"]
+  },
 
   { "artist": "Muse", "tag": ["rock"] },
   { "artist": "Paul Gilbert", "tag": ["rock"] },
@@ -36,6 +78,14 @@
   { "artist": "Pixies", "tag": ["alternative", "rock", "indie"] },
 
   { "artist": "Dancing mood", "tag": ["arg"] },
+
+  { "artist": "Sum 41", "tag": ["Pop-punk", "skate", "punk rock"] },
+
+  { "artist": "Ozzy Osbourne", "tag": ["Heavy metal", "hard rock"] },
+
+  { "artist": "Black Sabbath", "tag": ["Heavy metal"] },
+
+  { "artist": "Moby", "tag": ["EDM"] },
 
   { "artist": "Jimi Hendrix", "tag": ["rock"] },
   { "artist": "disturbed", "tag": ["rock"] },
