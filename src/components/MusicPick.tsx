@@ -13,9 +13,23 @@ const artists = artistsdb.sort((a, b) => {
   return 0;
 });
 
-const tags = Array.from(new Set(artists.flatMap((a) => a.tag)))
+const tagMap: Map<string, number> = new Map();
+
+// Typescript doesn't keep track of the .set .get references, and the default signature of .get is T | undefined, SO => !
+Array.from(artists.flatMap((a) => a.tag))
   .map((t) => t.toUpperCase())
-  .sort();
+  .forEach((t) => {
+    if (tagMap.has(t)) {
+      tagMap.set(t, tagMap.get(t)! + 1);
+    } else {
+      tagMap.set(t, 1);
+    }
+  });
+const taggy = [...tagMap.keys()]
+  .map((t) => {
+    return { genre: t, qty: tagMap.get(t) };
+  })
+  .sort((a, b) => b.qty! - a.qty!);
 
 export const MusicPick = () => {
   const [random, setRandom] = useState<{
@@ -76,17 +90,21 @@ export const MusicPick = () => {
         ClearFilter
       </button>
       <div className="flex flex-wrap justify-center  mt-2 ">
-        {tags.map((t) => (
+        {/* showing top 10 genres */}
+        {taggy.slice(0, 10).map((t) => (
           <button
-            className={`  text-sm font-bold m-1 px-2 py-1 uppercase   ${
-              currentFilter.includes(t)
+            className={` flex relative text-sm font-bold m-1 px-3 py-1 uppercase   ${
+              currentFilter.includes(t.genre)
                 ? "text-black bg-white"
                 : "text-white bg-neutral-800"
             }`}
-            key={t}
-            onClick={() => addFilter(t)}
+            key={t.genre}
+            onClick={() => addFilter(t.genre)}
           >
-            {t}
+            <div>{t.genre}</div>
+            <div className="bg-red-500 -right-1.5 text-neutral-100 -top-1 absolute rounded-full w-4 h-4 text-xs flex items-center justify-center">
+              {t.qty}
+            </div>
           </button>
         ))}
       </div>

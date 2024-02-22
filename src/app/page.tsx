@@ -204,14 +204,14 @@ const Youtube = () => {
         </button>
       </div>
 
-      <div className="my-4 w-full">
+      <div className="my-4 w-full ">
         {filteredList().map((m) => (
           <div
             onClick={() => {
               setSelected(m);
               playerRef.current?.scrollIntoView();
             }}
-            className={`my-1 flex cursor-pointer justify-between   hover:bg-gray-800   hover:text-white ${
+            className={`my-1 flex cursor-pointer   justify-between   hover:bg-gray-800   hover:text-white ${
               selected && m.src === selected.src
                 ? "border-l-4 border-white bg-gray-800 text-white"
                 : "bg-gray-900 text-gray-300"
@@ -219,7 +219,7 @@ const Youtube = () => {
             key={m.src}
           >
             {" "}
-            <div className="px-2 truncate"> {m.title} </div>{" "}
+            <div className="px-2  "> {m.title} </div>{" "}
             {/* <div>
               {" "}
               {m.tags.map((t) => (
