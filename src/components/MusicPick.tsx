@@ -61,16 +61,49 @@ export const MusicPick = () => {
 
   return (
     <div className="flex pt-4 sm:my-4  w-full max-w-2xl  flex-col bg-neutral-900 sm:rounded-2xl sm:p-4">
-      <div className="flex my-2   w-full items-center justify-evenly">
+      <div className="flex my-2 mx-6    items-center justify-between">
         <button
           className="bg-green-500  hover:scale-105 text-black text-sm font-semibold p-2 rounded-3xl"
           onClick={() => handleRandom()}
         >
           Random
         </button>
-        <div className="w-36 underline truncate underline-offset-4 decoration-pink-500">
+        <div className=" mx-8 w-full underline truncate underline-offset-4 decoration-pink-500">
           {random?.artist}
         </div>{" "}
+        <a
+          href={`https://open.spotify.com/search/${random?.artist}`}
+          target="_blank"
+        >
+          <button
+            disabled={!random ? true : false}
+            className={` rounded-full mx-4   h-10 w-10 text-sm font-bold    uppercase   ${
+              random
+                ? "text-black bg-green-500"
+                : "text-white bg-neutral-500 cursor-not-allowed"
+            }`}
+          >
+            <div className="flex items-center justify-center">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                fill="none"
+                stroke="currentColor"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="1.5"
+              >
+                <path stroke="none" d="M0 0h24v24H0z" />
+                <path
+                  fill="currentColor"
+                  stroke="none"
+                  d="M6 4v16a1 1 0 0 0 1.524.852l13-8a1 1 0 0 0 0-1.704l-13-8A1 1 0 0 0 6 4z"
+                />
+              </svg>
+            </div>
+          </button>
+        </a>
         <button
           disabled={!random ? true : false}
           className={`  text-sm font-bold mx-1 px-2 py-1 uppercase   ${
