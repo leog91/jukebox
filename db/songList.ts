@@ -22,6 +22,29 @@ export const musicList: Media[] = [
         tags: ["ALBUM", "VINYL"]
     },
 
+    //
+    {
+        src: "dqLffnqnI0c",
+        title: "OSCOB - praise the sun god",
+        tags: ["ALBUM", "Lo-fi", "Vaporwave"]
+    },
+
+    //
+
+    {
+        src: "JfCNwhWWdCs",
+        title: "modest by default : Permaculture (组织胜过时间)",
+        tags: ["ALBUM", "VINYL"]
+    },
+
+    {
+        src: "zpKfh8gkgp0",
+        title: "Japanese Acid Folk, Blues, Jazz & Beyond - Inspired by Perfect Days",
+        tags: ["ALBUM", "VINYL"]
+    },
+
+
+
     {
         src: "iJ90b8dE31A",
         title: "サンセットドライブ (Sunset Drive) (1991) - Anri, Minako Yoshida, Reiko Takahashi",
