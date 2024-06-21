@@ -16,6 +16,18 @@ export const musicList: Media[] = [
         title: "Hania Rani - @arteconcert's Piano Day",
         tags: ["ALBUM", "PIANO"],
     },
+    {
+        src: "i_3u3uJ4F9E",
+        title: "Japanese Soul from the '70s: ライトメロウ with Kengo",
+        tags: ["ALBUM", "VINYL"]
+    },
+
+    {
+        src: "iJ90b8dE31A",
+        title: "サンセットドライブ (Sunset Drive) (1991) - Anri, Minako Yoshida, Reiko Takahashi",
+        tags: ["ALBUM",]
+    },
+
 
 
     {
