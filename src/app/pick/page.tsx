@@ -6,6 +6,7 @@ import { UserButton } from "@clerk/nextjs";
 import { MusicPick } from "@/src/components/MusicPick";
 import React from "react";
 import Link from "next/link";
+import { Result } from "@/src/components/result";
 
 async function Pick() {
   const { userId } = auth();
@@ -15,6 +16,7 @@ async function Pick() {
       <div className="bg-blue-200 h-10 w-10">
         <UserButton />
       </div>
+      <Result />
 
       {userId ? (
         <div className="flex w-full  justify-end max-w-2xl">
