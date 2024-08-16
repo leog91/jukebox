@@ -1,16 +1,18 @@
 import { UserButton, auth } from "@clerk/nextjs";
 import { currentUser } from "@clerk/nextjs";
-import { submit } from "../../action";
+import { submit, addGenre, addArtistWithGenre } from "../../action";
 
-import React from "react";
+import React, { useState } from "react";
+import { GenreSelector } from "@/src/components/genreSelect";
+import { AddArtistWithGenre } from "@/src/components/addArtistWithGenre";
 
-export default async function Page() {
+export default function Page() {
   return (
     <div className="min-h-screen justify-center bg-black flex flex-col  items-center ">
-      <form className="text-black" action={submit}>
+      <form className="text-black my-3" action={submit}>
         <input
           type="text"
-          placeholder="🫡 (only emojis allowed)"
+          placeholder="artist"
           // pattern="^[\p{Emoji}]+$"
           name="text"
           autoFocus
@@ -19,6 +21,25 @@ export default async function Page() {
         />
         <button>➕</button>
       </form>
+      <div className="h-2 w-full bg-red-500"></div>
+      <form className="text-black my-3" action={addGenre}>
+        <input
+          type="text"
+          placeholder="genre(unique)"
+          // pattern="^[\p{Emoji}]+$"
+          name="genre"
+          // maxLength="10"
+          required
+        />
+        <button>➕</button>
+      </form>
+
+      <GenreSelector />
+
+      <div className="h-2 w-full bg-violet-500 m-10"></div>
+
+      <AddArtistWithGenre />
+
       {/* </main> */}
     </div>
   );

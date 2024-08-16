@@ -1,5 +1,5 @@
 import { sql } from "drizzle-orm";
-import { text, sqliteTable, integer } from "drizzle-orm/sqlite-core";
+import { text, sqliteTable, integer, primaryKey } from "drizzle-orm/sqlite-core";
 
 const foo = sqliteTable("foo", {
     bar: text("bar").notNull().default("Hey!"),
@@ -51,18 +51,26 @@ export const artists = sqliteTable('artists', {
 
 export const genres = sqliteTable('genres', {
     id: integer('id').primaryKey(),
-    name: text('name').notNull(),
+    name: text('name').notNull().unique(),
+    createdAt: text('created_at')
+        .default(sql`CURRENT_TIMESTAMP`)
+        .notNull(),
 });
 
 export const artistGenres = sqliteTable('artist_genres', {
-    id: integer('id').primaryKey(),
+    id: integer('id').unique(),
     artistId: integer('artist_id')
         .notNull()
         .references(() => artists.id, { onDelete: 'cascade' }),
     genreId: integer('genre_id')
         .notNull()
         .references(() => genres.id)
+}, (table) => {
+    return {
+        pk: primaryKey({ columns: [table.artistId, table.genreId] }),
+    };
 });
+
 
 
 
