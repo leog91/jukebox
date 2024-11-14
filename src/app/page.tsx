@@ -19,6 +19,7 @@ const inter = Inter({ subsets: ["latin"] });
 
 // CHECK @ts-ignore
 
+
 //video/audio MODE
 
 //album, to set/long
