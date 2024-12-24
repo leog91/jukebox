@@ -1,5 +1,6 @@
-import { UserButton, auth } from "@clerk/nextjs";
-import { currentUser } from "@clerk/nextjs";
+import { UserButton } from "@clerk/nextjs";
+import { auth } from "@clerk/nextjs/server";
+
 import { submit, addGenre, addArtistWithGenre } from "../../action";
 
 import React, { useState } from "react";
