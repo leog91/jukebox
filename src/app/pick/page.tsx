@@ -8,11 +8,12 @@ import React from "react";
 import Link from "next/link";
 import { Result } from "@/src/components/result";
 
-async function Pick({
-  searchParams,
-}: {
-  searchParams: { [key: string]: string | string[] | undefined };
-}) {
+async function Pick(
+  props: {
+    searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
+  }
+) {
+  const searchParams = await props.searchParams;
   const { userId } = await auth();
 
   let p = "1";

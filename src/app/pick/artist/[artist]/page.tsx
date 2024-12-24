@@ -5,7 +5,8 @@ import { addGenre, getArtist, submit } from "../../../action";
 
 import React from "react";
 
-export default async function Page({ params }: { params: { artist: string } }) {
+export default async function Page(props: { params: Promise<{ artist: string }> }) {
+  const params = await props.params;
   const artist = (await getArtist(params.artist.replaceAll("_", " ")))[0];
 
   console.log(params.artist.replaceAll("%20", " "));
