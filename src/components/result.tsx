@@ -1,10 +1,10 @@
 import React from "react";
 import Link from "next/link";
-import { auth } from "@clerk/nextjs";
+import { auth } from "@clerk/nextjs/server";
 import { getArtists } from "../app/action";
 
 export async function Result({ page }: { page: string }) {
-  const { userId } = auth();
+  const { userId } = await auth();
 
   const res = await getArtists(Number(page) - 1);
   return (

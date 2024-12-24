@@ -1,6 +1,6 @@
 // "use client";
 
-import { auth } from "@clerk/nextjs";
+import { auth } from "@clerk/nextjs/server";
 
 import { UserButton } from "@clerk/nextjs";
 import { MusicPick } from "@/src/components/MusicPick";
@@ -13,7 +13,7 @@ async function Pick({
 }: {
   searchParams: { [key: string]: string | string[] | undefined };
 }) {
-  const { userId } = auth();
+  const { userId } = await auth();
 
   let p = "1";
   if (searchParams.page) {
