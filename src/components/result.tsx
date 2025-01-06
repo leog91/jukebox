@@ -8,7 +8,7 @@ export async function Result({ page }: { page: string }) {
 
   const res = await getArtists(Number(page) - 1);
   return (
-    <div>
+    <div className="mt-4">
       {res.map((r) => (
         <div className="flex justify-between" key={r.id}>
           <div>{r.name} </div>

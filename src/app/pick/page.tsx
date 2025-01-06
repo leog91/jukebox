@@ -8,11 +8,9 @@ import React from "react";
 import Link from "next/link";
 import { Result } from "@/src/components/result";
 
-async function Pick(
-  props: {
-    searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
-  }
-) {
+async function Pick(props: {
+  searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
+}) {
   const searchParams = await props.searchParams;
   const { userId } = await auth();
 
@@ -22,13 +20,25 @@ async function Pick(
   }
 
   return (
-    <div className="min-h-screen bg-black flex flex-col   items-center ">
-      {userId ? (
-        <div className="bg-blue-200 h-10 w-10">
-          <UserButton />
-        </div>
-      ) : null}
-
+    <div className="min-h-screen bg-black flex flex-col m-auto max-w-2xl  items-center ">
+      <div className="bg-black w-full flex justify-end m-2 h-12  pt-4">
+        {userId ? (
+          <UserButton
+            appearance={{
+              elements: { userButtonAvatarBox: "w-12 h-12" },
+            }}
+          />
+        ) : (
+          <div>
+            <Link
+              href="/sign-in"
+              className="bg-white text-black rounded-full  p-3 font-semibold hover:bg-gray-300"
+            >
+              Log in
+            </Link>
+          </div>
+        )}
+      </div>
       <Result page={p} />
 
       {userId ? (
