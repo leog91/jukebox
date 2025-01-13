@@ -1,13 +1,18 @@
-import { UserButton } from "@clerk/nextjs";
-import { auth } from "@clerk/nextjs/server";
+import { getArtist } from "../../../action";
 
-import { addGenre, getArtist, submit } from "../../../action";
+import { Delete } from "./delete";
 
-import React from "react";
+import { Artist } from "./action";
 
-export default async function Page(props: { params: Promise<{ artist: string }> }) {
+export default async function Page(props: {
+  params: Promise<{ artist: string }>;
+}) {
   const params = await props.params;
-  const artist = (await getArtist(params.artist.replaceAll("_", " ")))[0];
+  const artist: Artist = (
+    await getArtist(params.artist.replaceAll("_", " "))
+  )[0];
+
+  console.log(params);
 
   console.log(params.artist.replaceAll("%20", " "));
 
@@ -28,6 +33,7 @@ export default async function Page(props: { params: Promise<{ artist: string }> 
             <div>{artist.name}</div>
             <div> {artist.createdAt}</div>
             <div>genres . . .</div>
+            <Delete artist={artist} />
           </div>
         </div>
       )}
