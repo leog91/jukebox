@@ -4,6 +4,7 @@ import { useActionState } from "react";
 import { submitArtist } from "./action";
 
 import type { ActionResponse } from "./action";
+import Notification from "@/src/components/Notification";
 
 import { UserButton } from "@clerk/nextjs";
 import { auth } from "@clerk/nextjs/server";
@@ -23,6 +24,8 @@ export default function Page() {
   const [state, action, isPending] = useActionState(submitArtist, initialState);
   return (
     <div className="min-h-screen justify-center bg-black flex flex-col  items-center ">
+      {state.message !== "" && <Notification message={state.message} />}
+
       <form className="text-pink-500 my-3 bg-stone-400" action={action}>
         <label htmlFor="name">Name</label>
         <input
@@ -38,7 +41,7 @@ export default function Page() {
           className={state?.errors?.name ? "border-red-500" : ""}
         />
         <div>
-          {state?.message !== "" && state.message}
+          {/* {state?.message !== "" && state.message} */}
 
           {state?.errors?.name && (
             <p id="name-error" className="text-sm text-yellow-500">
