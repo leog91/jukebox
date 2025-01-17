@@ -10,7 +10,7 @@ import { Tags } from "@/db/db";
 
 import { Media, Tag, musicList } from "@/db/songList";
 
-import { radioList, Radio } from "@/db/radio";
+import { radioList, Radio as RadioType } from "@/db/radio";
 import Link from "next/link";
 
 //check Imports
@@ -18,6 +18,7 @@ import Link from "next/link";
 const inter = Inter({ subsets: ["latin"] });
 
 // CHECK @ts-ignore
+
 
 //video/audio MODE
 
@@ -27,7 +28,7 @@ const inter = Inter({ subsets: ["latin"] });
 // "https://www.youtube.com/embed/
 
 const Radio = () => {
-  const [tuned, setTuned] = useState<Radio | null>(null);
+  const [tuned, setTuned] = useState<RadioType | null>(null);
 
   return (
     <>

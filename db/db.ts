@@ -15,4 +15,6 @@ export const Tags = [
     "ROCK",
     "JUNGLE",
     "EDM",
+    "Vaporwave",
+    "Lo-fi"
 ] as const;

@@ -16,6 +16,83 @@ export const musicList: Media[] = [
         title: "Hania Rani - @arteconcert's Piano Day",
         tags: ["ALBUM", "PIANO"],
     },
+    {
+        src: "i_3u3uJ4F9E",
+        title: "Japanese Soul from the '70s: ライトメロウ with Kengo",
+        tags: ["ALBUM", "VINYL"]
+    },
+
+
+    //
+
+    {
+        src: "tARPWiuCQ6U",
+        title: "SATELLITE LOVERS - SONS OF 1973 (Full Album, 1996)",
+        tags: ["ALBUM"]
+    },
+
+    //
+    {
+        src: "wEsuJoBKAvA",
+        title: "Goblin War [ゴブリン] - Dungeon Synth Mix",
+        tags: ["ALBUM",]
+    },
+
+
+
+    {
+        src: "3ceLZmV-jsA",
+        title: "FUSION JAZZ",
+        tags: ["ALBUM", "VINYL"]
+    },
+
+    {
+        src: "u5ZtMpvrOyg",
+        title: "Xerf Xpec's Yatabe Track Day (Japanese Jazz/Fusion Mix Vol.2)",
+        tags: ["ALBUM", "VINYL"]
+    },
+    //
+    {
+        src: "qlEoNKikrZs",
+        title: "MICROMECHA - Time Flows Constantly",
+        tags: ["ALBUM", "VINYL"]
+    },
+    //
+    {
+        src: "uce6VsWy4dw",
+        title: "The Empress - Palais Bulles - Passengers - ARTE Concert",
+        tags: ["LIVE"]
+    },
+
+
+    {
+        src: "dqLffnqnI0c",
+        title: "OSCOB - praise the sun god",
+        tags: ["ALBUM", "Lo-fi", "Vaporwave"]
+    },
+
+
+
+    {
+        src: "JfCNwhWWdCs",
+        title: "modest by default : Permaculture (组织胜过时间)",
+        tags: ["ALBUM", "VINYL"]
+    },
+
+    {
+        src: "zpKfh8gkgp0",
+        title: "Japanese Acid Folk, Blues, Jazz & Beyond - Inspired by Perfect Days",
+        tags: ["ALBUM", "VINYL"]
+    },
+
+
+
+    {
+        src: "iJ90b8dE31A",
+        title: "サンセットドライブ (Sunset Drive) (1991) - Anri, Minako Yoshida, Reiko Takahashi",
+        tags: ["ALBUM",]
+    },
+
 
 
     {
