@@ -1,3 +1,5 @@
+"use client";
+
 import { useState } from "react";
 import artistsdb from "../../db/artist.json";
 

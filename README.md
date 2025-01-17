@@ -1,38 +1,28 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Jukebox
 
-## Getting Started
+**🎵 One Stop Artist Hub.**
 
-First, run the development server:
+## 🌟 Overview
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-```
+In today's world, where countless platforms like Spotify, YouTube, and radio stations coexist, it can become overwhelming to keep track of artists, musicians, videos, and other content. **One Stop Artist Hub** is a centralized web platform designed to serve as a **"single source of truth"** for all your favorite content, helping you stay organized and reducing the complexity of managing multiple services.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## ✨ Features
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+- 🎯 **Centralized Access**: Navigate seamlessly to your favorite platforms like Spotify and YouTube directly from the hub.
+- 🎧 **Personalized Radio Streams**: Enjoy content tailored to your individual tastes.
+- 💡 **Music Discovery**: When you're unsure of what to listen to, the platform can provide ideas and inspiration.
+- 📀 **Album Recommendations**: A dedicated section with curated album suggestions based on your preferences and listening history.
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+## 🚀 Vision
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+The platform is currently envisioned as a **personal tool**, allowing users to input their preferences, organize their data, and create a tailored experience. While the initial focus is on individual use, the possibility of expanding to support multiple users is open for future development.
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+## ❓ Why This Project?
 
-## Learn More
+Managing content across fragmented platforms can be overwhelming. This project aims to simplify that experience while also enhancing the joy of music discovery and personalized recommendations.
 
-To learn more about Next.js, take a look at the following resources:
+Who knows? One day, others might find this tool valuable enough to use it themselves!
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+---
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+🎶 Built with ❤️ for music lovers.
