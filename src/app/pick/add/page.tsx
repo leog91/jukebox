@@ -6,14 +6,7 @@ import { submitArtist } from "./action";
 import type { ActionResponse } from "./action";
 import Notification from "@/src/components/Notification";
 
-import { UserButton } from "@clerk/nextjs";
-import { auth } from "@clerk/nextjs/server";
-
-import { submit, addGenre, addArtistWithGenre } from "../../action";
-
-import React, { useState } from "react";
-import { GenreSelector } from "@/src/components/genreSelect";
-import { AddArtistWithGenre } from "@/src/components/addArtistWithGenre";
+import React from "react";
 
 const initialState: ActionResponse = {
   success: false,
@@ -41,43 +34,21 @@ export default function Page() {
           className={state?.errors?.name ? "border-red-500" : ""}
         />
         <div>
-          {/* {state?.message !== "" && state.message} */}
-
           {state?.errors?.name && (
             <p id="name-error" className="text-sm text-yellow-500">
               {state.errors.name[0]}
             </p>
           )}
         </div>
-
         <button
           type="submit"
           className="bg-red-500 text-white p-2 rounded"
           disabled={isPending}
         >
-          {isPending ? "Saving..." : "Save Album"}
+          {isPending ? "Saving..." : "Add Artist"}
         </button>
       </form>
       <div className="h-2 w-full bg-red-500"></div>
-      {/* <form className="text-black my-3" action={addGenre}>
-        <input
-          type="text"
-          placeholder="genre(unique)"
-          // pattern="^[\p{Emoji}]+$"
-          name="genre"
-          // maxLength="10"
-          required
-        />
-        <button>➕</button>
-      </form> */}
-
-      {/* <GenreSelector />
-
-      <div className="h-2 w-full bg-violet-500 m-10"></div>
-
-      <AddArtistWithGenre />
- */}
-      {/* </main> */}
     </div>
   );
 }
