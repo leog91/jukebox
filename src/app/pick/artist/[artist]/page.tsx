@@ -1,7 +1,6 @@
 import { getArtist } from "../../../action";
-
+import { currentUser } from "@clerk/nextjs/server";
 import { Delete } from "./delete";
-
 import { Artist } from "./action";
 
 export default async function Page(props: {
@@ -12,9 +11,9 @@ export default async function Page(props: {
     await getArtist(params.artist.replaceAll("_", " "))
   )[0];
 
-  console.log(params);
-
-  console.log(params.artist.replaceAll("%20", " "));
+  const user = await currentUser();
+  const isAdmin =
+    process.env.ADMIN_EMAIL === user?.emailAddresses[0].emailAddress;
 
   return (
     <div className="min-h-screen justify-center bg-black flex flex-col  items-center ">
@@ -33,7 +32,7 @@ export default async function Page(props: {
             <div>{artist.name}</div>
             <div> {artist.createdAt}</div>
             <div>genres . . .</div>
-            <Delete artist={artist} />
+            {isAdmin ? <Delete artist={artist} /> : null}
           </div>
         </div>
       )}

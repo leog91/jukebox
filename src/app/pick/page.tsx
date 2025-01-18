@@ -1,5 +1,3 @@
-// "use client";
-
 import { auth } from "@clerk/nextjs/server";
 
 import { UserButton } from "@clerk/nextjs";
@@ -7,12 +5,17 @@ import { MusicPick } from "@/src/components/MusicPick";
 import React from "react";
 import Link from "next/link";
 import { Result } from "@/src/components/result";
+import { currentUser } from "@clerk/nextjs/server";
 
 async function Pick(props: {
   searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
 }) {
   const searchParams = await props.searchParams;
   const { userId } = await auth();
+
+  const user = await currentUser();
+  const isAdmin =
+    process.env.ADMIN_EMAIL === user?.emailAddresses[0].emailAddress;
 
   let p = "1";
   if (searchParams.page) {
@@ -41,7 +44,7 @@ async function Pick(props: {
       </div>
       <Result page={p} />
 
-      {userId ? (
+      {isAdmin ? (
         <div className="flex w-full  justify-end max-w-2xl">
           <Link
             className="bg-green-500    max-w-sm  text-black text-sm font-semibold  m-2  p-1.5 px-2 rounded-3xl"
