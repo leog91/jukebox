@@ -27,6 +27,7 @@ async function Page() {
       <div className=" bg-black flex  flex-wrap p-4      ">
         {albums.map((album) => (
           <a
+            key={album.id}
             href={`https://open.spotify.com/search/${
               album.artist + " " + album.name
             }`}
