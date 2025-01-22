@@ -48,6 +48,22 @@ export const artists = sqliteTable('artists', {
 
 
 
+export const albums = sqliteTable('albums', {
+    id: integer('id').primaryKey(),
+    name: text('name')
+        .notNull()
+        .unique(),
+    artist: text('artist')
+        .notNull(),
+    createdAt: text('created_at')
+        .default(sql`CURRENT_TIMESTAMP`)
+        .notNull(),
+    coverUrl: text('cover_url')
+
+});
+
+
+
 
 export const genres = sqliteTable('genres', {
     id: integer('id').primaryKey(),
