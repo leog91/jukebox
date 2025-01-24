@@ -10,7 +10,7 @@ export function Delete({ artist }: { artist: Artist }) {
   return (
     <div>
       <button
-        className="bg-red-500 text-white p-2 rounded"
+        className="bg-red-500 text-white p-2 rounded-sm"
         onClick={() => deleteArtist(artist)}
       >
         Delete

@@ -198,7 +198,7 @@ const Youtube = () => {
         })}
         <button
           onClick={() => setCurrentFilter([])}
-          className="m-1 rounded-sm border-2 border-slate-800 bg-slate-300 px-1 text-sm font-extrabold text-red-700 hover:cursor-pointer"
+          className="m-1 rounded-xs border-2 border-slate-800 bg-slate-300 px-1 text-sm font-extrabold text-red-700 hover:cursor-pointer"
         >
           X
         </button>
