@@ -19,7 +19,6 @@ const inter = Inter({ subsets: ["latin"] });
 
 // CHECK @ts-ignore
 
-
 //video/audio MODE
 
 //album, to set/long
@@ -266,6 +265,13 @@ export default function Jukebox() {
             href="/pick"
           >
             Pick
+          </Link>
+
+          <Link
+            className="bg-green-500  absolute  left-16 text-black text-sm font-semibold  ml-2 p-1.5 px-2 rounded-3xl"
+            href="/albums"
+          >
+            Albums
           </Link>
 
           <div className=" relative  mb-10 flex w-full max-w-2xl flex-col items-center ">

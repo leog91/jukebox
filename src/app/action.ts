@@ -1,7 +1,7 @@
 "use server";
 import { eq, sql } from "drizzle-orm";
 import { db } from "../db/db";
-import { artists, genres, tests, users } from "../db/schema"
+import { artists, genres } from "../db/schema"
 import { redirect } from "next/navigation";
 
 

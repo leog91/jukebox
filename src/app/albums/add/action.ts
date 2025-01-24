@@ -1,7 +1,8 @@
 'use server'
 
 import { z } from 'zod'
-
+import { db } from '@/src/db/db';
+import { albums } from '@/src/db/schema';
 
 
 export interface AlbumFormData {
@@ -47,7 +48,29 @@ export async function submitAlbum(prevState: ActionResponse | null, formData: Fo
 
             }
         }
+        try {
+            await db.insert(albums)
+                .values({
+                    name: validatedData.data.name,
+                    artist: validatedData.data.artist,
+                    coverUrl: validatedData.data.cover
 
+                })
+
+            console.log('Album submitted:', validatedData.data)
+        } catch (e: any) {
+            console.log('Error:', e)
+            if (e.code === 'SQLITE_CONSTRAINT') {
+                return {
+                    success: false,
+                    message: 'Must be unique',
+                }
+            }
+            return {
+                success: false,
+                message: 'An unexpected error occurred on DB',
+            }
+        }
 
         //save data
         console.log('Album submitted:', validatedData.data)
