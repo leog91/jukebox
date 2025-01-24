@@ -1,9 +1,11 @@
 {
   "version": "6",
   "dialect": "sqlite",
+  "id": "1c0bb8ee-ab03-443c-ab3c-cd2f75197498",
+  "prevId": "a62dece3-420c-4990-abd8-0bfa9eea426a",
   "tables": {
-    "artist_genres": {
-      "name": "artist_genres",
+    "albums": {
+      "name": "albums",
       "columns": {
         "id": {
           "name": "id",
@@ -12,50 +14,38 @@
           "notNull": true,
           "autoincrement": false
         },
-        "artist_id": {
-          "name": "artist_id",
-          "type": "integer",
+        "name": {
+          "name": "name",
+          "type": "text",
           "primaryKey": false,
           "notNull": true,
           "autoincrement": false
         },
-        "genre_id": {
-          "name": "genre_id",
-          "type": "integer",
+        "artist": {
+          "name": "artist",
+          "type": "text",
           "primaryKey": false,
           "notNull": true,
+          "autoincrement": false
+        },
+        "created_at": {
+          "name": "created_at",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false,
+          "default": "'sql`(CURRENT_TIMESTAMP)`'"
+        },
+        "cover_url": {
+          "name": "cover_url",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
           "autoincrement": false
         }
       },
       "indexes": {},
-      "foreignKeys": {
-        "artist_genres_artist_id_artists_id_fk": {
-          "name": "artist_genres_artist_id_artists_id_fk",
-          "tableFrom": "artist_genres",
-          "columnsFrom": [
-            "artist_id"
-          ],
-          "tableTo": "artists",
-          "columnsTo": [
-            "id"
-          ],
-          "onUpdate": "no action",
-          "onDelete": "cascade"
-        },
-        "artist_genres_genre_id_genres_id_fk": {
-          "name": "artist_genres_genre_id_genres_id_fk",
-          "tableFrom": "artist_genres",
-          "columnsFrom": [
-            "genre_id"
-          ],
-          "tableTo": "genres",
-          "columnsTo": [
-            "id"
-          ],
-          "onUpdate": "no action",
-          "onDelete": "no action"
-        }
-      },
+      "foreignKeys": {},
       "compositePrimaryKeys": {},
       "uniqueConstraints": {},
       "checkConstraints": {}
@@ -108,9 +98,25 @@
           "primaryKey": false,
           "notNull": true,
           "autoincrement": false
+        },
+        "created_at": {
+          "name": "created_at",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false,
+          "default": "CURRENT_TIMESTAMP"
         }
       },
-      "indexes": {},
+      "indexes": {
+        "genres_name_unique": {
+          "name": "genres_name_unique",
+          "columns": [
+            "name"
+          ],
+          "isUnique": true
+        }
+      },
       "foreignKeys": {},
       "compositePrimaryKeys": {},
       "uniqueConstraints": {},
@@ -161,15 +167,15 @@
         "posts_user_id_users_id_fk": {
           "name": "posts_user_id_users_id_fk",
           "tableFrom": "posts",
+          "tableTo": "users",
           "columnsFrom": [
             "user_id"
           ],
-          "tableTo": "users",
           "columnsTo": [
             "id"
           ],
-          "onUpdate": "no action",
-          "onDelete": "cascade"
+          "onDelete": "cascade",
+          "onUpdate": "no action"
         }
       },
       "compositePrimaryKeys": {},
@@ -240,12 +246,14 @@
       "checkConstraints": {}
     }
   },
+  "views": {},
   "enums": {},
   "_meta": {
+    "schemas": {},
     "tables": {},
     "columns": {}
   },
-  "id": "635ef719-4971-49c4-8cbb-a3009a9004c4",
-  "prevId": "9d237622-2818-4403-8d91-9738bb33105a",
-  "views": {}
+  "internal": {
+    "indexes": {}
+  }
 }

@@ -1,13 +1,16 @@
 {
   "name": "jukebox",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "private": true,
   "scripts": {
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "dbpush": "npx drizzle-kit push:sqlite"
+    "db-generate": "drizzle-kit generate",
+    "db-push": "drizzle-kit push",
+    "db-migrate": "drizzle-kit migrate",
+    "db-pull": "drizzle-kit pull"
   },
   "dependencies": {
     "@clerk/nextjs": "^6.9.6",
@@ -17,7 +20,7 @@
     "@types/react-dom": "19.0.2",
     "autoprefixer": "10.4.20",
     "dotenv": "^16.4.5",
-    "drizzle-orm": "^0.30.8",
+    "drizzle-orm": "^0.38.4",
     "eslint": "9.17.0",
     "eslint-config-next": "^15.1.4",
     "next": "^15.1.4",
@@ -29,6 +32,7 @@
     "zod": "^3.24.1"
   },
   "devDependencies": {
-    "drizzle-kit": "^0.20.17"
+    "drizzle-kit": "^0.30.2",
+    "tsx": "^4.19.2"
   }
 }
