@@ -42,7 +42,7 @@ export default function Page() {
         </div>
         <button
           type="submit"
-          className="bg-red-500 text-white p-2 rounded"
+          className="bg-red-500 text-white p-2 rounded-sm"
           disabled={isPending}
         >
           {isPending ? "Saving..." : "Add Artist"}

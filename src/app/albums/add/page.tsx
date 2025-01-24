@@ -70,7 +70,7 @@ export default function Page() {
 
         <button
           type="submit"
-          className="bg-red-500 text-white p-2 rounded"
+          className="bg-red-500 text-white p-2 rounded-sm"
           disabled={isPending}
         >
           {isPending ? "Saving..." : "Save Album"}
