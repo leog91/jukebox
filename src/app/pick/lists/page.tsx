@@ -22,7 +22,7 @@ export default async function Page() {
                 25
               </div>
               <div className="">
-                <div className="text-base font-semibold">'25 breeze</div>
+                <div className="text-base font-semibold">&apos; breeze</div>
                 <div className="text-zinc-400 font-semibold text-sm">
                   Playlists
                 </div>
