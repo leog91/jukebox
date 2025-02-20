@@ -5,6 +5,7 @@ import { currentUser } from "@clerk/nextjs/server";
 import Link from "next/link";
 
 import { getAlbums } from "./action";
+import { PlusIcon } from "@/src/components/icons/plusIcon";
 
 async function Page() {
   const albums = await getAlbums();
@@ -17,13 +18,15 @@ async function Page() {
       {isAdmin ? (
         <div className="flex w-full  justify-end max-w-2xl">
           <Link
-            className="bg-green-500    max-w-sm  text-black text-sm font-semibold  m-2  p-1.5 px-2 rounded-3xl"
+            className="bg-green-500 flex space-x-0.5 justify-center items-center   max-w-sm  text-black text-sm font-semibold  m-2  p-1.5 px-2 rounded-3xl"
             href="/albums/add"
           >
-            add album
+            <PlusIcon />
+            <p>album</p>
           </Link>
         </div>
       ) : null}
+
       <div className=" bg-black flex  flex-wrap p-4      ">
         {albums.map((album) => (
           <a
