@@ -1,5 +1,6 @@
 "use client";
 
+import { buttonStyle } from "@/src/components/button";
 import { deleteArtist } from "./action";
 
 import { Artist } from "./action";
@@ -9,10 +10,7 @@ import { Artist } from "./action";
 export function Delete({ artist }: { artist: Artist }) {
   return (
     <div>
-      <button
-        className="bg-red-500 text-white p-2 rounded-sm"
-        onClick={() => deleteArtist(artist)}
-      >
+      <button className={buttonStyle} onClick={() => deleteArtist(artist)}>
         Delete
       </button>
     </div>

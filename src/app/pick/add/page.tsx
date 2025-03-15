@@ -7,6 +7,7 @@ import type { ActionResponse } from "./action";
 import Notification from "@/src/components/Notification";
 
 import React from "react";
+import { buttonStyle } from "@/src/components/button";
 
 const initialState: ActionResponse = {
   success: false,
@@ -19,7 +20,10 @@ export default function Page() {
     <div className="min-h-screen justify-center bg-black flex flex-col  items-center ">
       {state.message !== "" && <Notification message={state.message} />}
 
-      <form className="text-pink-500 my-3 bg-stone-400" action={action}>
+      <form
+        className=" my-3 bg-neutral-900 rounded-md space-x-2 p-2 "
+        action={action}
+      >
         <label htmlFor="name">Name</label>
         <input
           id="name"
@@ -31,7 +35,11 @@ export default function Page() {
           minLength={1}
           maxLength={40}
           aria-describedby="name-error"
-          className={state?.errors?.name ? "border-red-500" : ""}
+          className={
+            state?.errors?.name
+              ? "border-red-500"
+              : "bg-zinc-800 rounded-sm pl-0.5"
+          }
         />
         <div>
           {state?.errors?.name && (
@@ -40,11 +48,8 @@ export default function Page() {
             </p>
           )}
         </div>
-        <button
-          type="submit"
-          className="bg-red-500 text-white p-2 rounded-sm"
-          disabled={isPending}
-        >
+
+        <button type="submit" className={buttonStyle} disabled={isPending}>
           {isPending ? "Saving..." : "Add Artist"}
         </button>
       </form>

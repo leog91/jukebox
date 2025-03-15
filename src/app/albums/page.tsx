@@ -45,7 +45,9 @@ async function Page() {
               <div className="font-medium text-lg overflow-clip md:w-48 w-36">
                 {album.name}
               </div>
-              <div className=" font-medium text-gray-300">{album.artist}</div>
+              <div className=" font-medium text-gray-300 w-36 md:w-48 truncate">
+                {album.artist}
+              </div>
             </div>
           </a>
         ))}
