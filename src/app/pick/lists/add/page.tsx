@@ -1,13 +1,13 @@
 "use client";
 
 import { useActionState } from "react";
-import { submitArtist } from "./action";
+
+import { submitCollection } from "./action";
 
 import type { ActionResponse } from "./action";
 import Notification from "@/src/components/Notification";
 
 import React from "react";
-import { buttonStyle } from "@/src/components/button";
 
 const initialState: ActionResponse = {
   success: false,
@@ -15,31 +15,27 @@ const initialState: ActionResponse = {
 };
 
 export default function Page() {
-  const [state, action, isPending] = useActionState(submitArtist, initialState);
+  const [state, action, isPending] = useActionState(
+    submitCollection,
+    initialState
+  );
   return (
     <div className="min-h-screen justify-center bg-black flex flex-col  items-center ">
+      Can add from this input, or from the main list maybe not, filter list ?
       {state.message !== "" && <Notification message={state.message} />}
-
-      <form
-        className=" my-3 bg-neutral-900 rounded-md space-x-2 p-2 "
-        action={action}
-      >
+      <form className="text-pink-500 my-3 bg-stone-400" action={action}>
         <label htmlFor="name">Name</label>
         <input
           id="name"
           name="name"
           autoFocus
-          placeholder="Metallica"
+          placeholder="List name"
           defaultValue={state?.inputs?.name}
           required
           minLength={1}
           maxLength={40}
           aria-describedby="name-error"
-          className={
-            state?.errors?.name
-              ? "border-red-500"
-              : "bg-zinc-800 rounded-sm pl-0.5"
-          }
+          className={state?.errors?.name ? "border-red-500" : ""}
         />
         <div>
           {state?.errors?.name && (
@@ -48,8 +44,11 @@ export default function Page() {
             </p>
           )}
         </div>
-
-        <button type="submit" className={buttonStyle} disabled={isPending}>
+        <button
+          type="submit"
+          className="bg-red-500 text-white p-2 rounded-sm"
+          disabled={isPending}
+        >
           {isPending ? "Saving..." : "Add Artist"}
         </button>
       </form>

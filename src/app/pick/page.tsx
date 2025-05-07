@@ -6,6 +6,7 @@ import React from "react";
 import Link from "next/link";
 import { Result } from "@/src/components/result";
 import { currentUser } from "@clerk/nextjs/server";
+import { PlusIcon } from "@/src/components/icons/plusIcon";
 
 async function Pick(props: {
   searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
@@ -42,20 +43,21 @@ async function Pick(props: {
           </div>
         )}
       </div>
-      <Result page={p} />
 
       {isAdmin ? (
         <div className="flex w-full  justify-end max-w-2xl">
           <Link
-            className="bg-green-500    max-w-sm  text-black text-sm font-semibold  m-2  p-1.5 px-2 rounded-3xl"
+            className="bg-green-500 flex space-x-0.5 justify-center items-center   max-w-sm  text-black text-sm font-semibold  m-2  p-1.5 px-2 rounded-3xl"
             href="/pick/add"
           >
-            add artist
+            <PlusIcon />
+            <p>artist</p>
           </Link>
         </div>
       ) : null}
+      <Result page={p} />
 
-      <MusicPick />
+      {/* <MusicPick /> */}
     </div>
   );
 }
