@@ -4,6 +4,8 @@ import { Metadata } from "next";
 
 import "@/styles/globals.css";
 
+import { Header } from "../components/header";
+
 export const metadata: Metadata = {
   title: "Home",
   description: "Welcome to Next.js",
@@ -19,7 +21,10 @@ export default function RootLayout({
   return (
     <ClerkProvider>
       <html lang="en">
-        <body>{children} </body>
+        <body>
+          <Header />
+          {children}
+        </body>
       </html>
     </ClerkProvider>
   );

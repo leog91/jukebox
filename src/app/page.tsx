@@ -256,24 +256,6 @@ export default function Jukebox() {
     >
       <div className="h-screen  py-1   bg-slate-700">
         <div className="flex relative flex-col items-center bg-slate-700 text-white">
-          <p className="mb-2 w-full border-b-4 border-b-slate-400  text-center text-3xl  font-black">
-            JUKEBOX
-          </p>
-
-          <Link
-            className="bg-green-500  absolute  left-0 text-black text-sm font-semibold  ml-2 p-1.5 px-2 rounded-3xl"
-            href="/pick"
-          >
-            Pick
-          </Link>
-
-          <Link
-            className="bg-green-500  absolute  left-16 text-black text-sm font-semibold  ml-2 p-1.5 px-2 rounded-3xl"
-            href="/albums"
-          >
-            Albums
-          </Link>
-
           <div className=" relative  mb-10 flex w-full max-w-2xl flex-col items-center ">
             <div className="mb-4 flex w-full justify-evenly text-center">
               <button
