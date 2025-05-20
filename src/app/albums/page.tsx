@@ -27,7 +27,7 @@ async function Page() {
         </div>
       ) : null}
 
-      <div className=" bg-black flex  flex-wrap p-4      ">
+      <div className="grid max-w-[2000px] grid-cols-2 sm:grid-cols-3   md:grid-cols-4  lg:grid-cols-5   xl:grid-cols-6  p-4  2xl:grid-cols-7     ">
         {albums.map((album) => (
           <a
             key={album.id}
@@ -38,7 +38,7 @@ async function Page() {
           >
             <div className="hover:bg-zinc-700 p-3 rounded-lg">
               <img
-                className="w-36 md:w-48 rounded-lg"
+                className=" rounded-lg"
                 src={album.coverUrl ?? undefined}
                 alt={album.name}
               />
