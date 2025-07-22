@@ -17,7 +17,9 @@ export default async function Page(props: {
 
   return (
     <div className="min-h-screen justify-center bg-black flex flex-col  items-center ">
-      <div className="text-red-500 text-7xl m-10">Edit </div>
+      <div className="text-red-500 text-7xl m-10 underline decoration-amber-500 decoration-5 underline-offset-7">
+        Remove{" "}
+      </div>
 
       {!artist ? (
         <div>
@@ -29,10 +31,20 @@ export default async function Page(props: {
       ) : (
         <div>
           <div>
-            <div>{artist.name}</div>
-            <div> {artist.createdAt}</div>
-            <div>genres . . .</div>
-            {isAdmin ? <Delete artist={artist} /> : null}
+            <div className="text-xl font-semibold">{artist.name}</div>
+            <div className="text-lg font-semibold border-t-2 mt-4 border-red-500">
+              {" "}
+              Date added:{" "}
+            </div>
+
+            <div className="text-lg"> {artist.createdAt}</div>
+            <div>
+              {new Intl.DateTimeFormat("en-GB", {
+                dateStyle: "full",
+                timeStyle: "long",
+              }).format(new Date(artist.createdAt))}
+              {isAdmin ? <Delete artist={artist} /> : null}
+            </div>
           </div>
         </div>
       )}
