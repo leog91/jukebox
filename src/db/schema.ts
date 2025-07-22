@@ -32,7 +32,7 @@ export const albums = sqliteTable("albums", {
     artist: text()
         .notNull(),
     createdAt: text("created_at")
-        .default("sql`(CURRENT_TIMESTAMP)`")
+        .default(sql`(CURRENT_TIMESTAMP)`)
         .notNull(),
     coverUrl: text("cover_url"),
 });
@@ -73,4 +73,30 @@ export const genres = sqliteTable('genres', {
 });
 
 
+export const tags = sqliteTable('tags', {
+    id: integer('id').primaryKey(),
+    name: text('name').notNull().unique(),
+    createdAt: text('created_at')
+        .default(sql`CURRENT_TIMESTAMP`)
+        .notNull(),
+});
 
+export const videos = sqliteTable('videos', {
+    id: integer('id').primaryKey(),
+    youtubeId: text('youtube_id').notNull().unique(),
+    title: text('title').notNull(),
+    createdAt: text('created_at')
+        .default(sql`CURRENT_TIMESTAMP`)
+        .notNull(),
+});
+
+export const videoTags = sqliteTable(
+    'video_tags',
+    {
+        videoId: integer('video_id').notNull().references(() => videos.id),
+        tagId: integer('tag_id').notNull().references(() => tags.id),
+    },
+    (table) => ({
+        pk: primaryKey({ columns: [table.videoId, table.tagId] }),
+    })
+);
