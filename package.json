@@ -15,6 +15,7 @@
   "dependencies": {
     "@clerk/nextjs": "^6.9.6",
     "@libsql/client": "^0.15.10",
+    "@next/third-parties": "^15.5.2",
     "@tailwindcss/postcss": "^4.0.0",
     "@types/node": "24.0.14",
     "@types/react": "19.1.8",
@@ -23,7 +24,7 @@
     "drizzle-orm": "^0.44.3",
     "eslint": "9.31.0",
     "eslint-config-next": "^15.1.4",
-    "next": "^15.1.4",
+    "next": "^15.5.2",
     "postcss": "8.5.6",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
