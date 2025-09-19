@@ -81,6 +81,8 @@ export const tags = sqliteTable('tags', {
         .notNull(),
 });
 
+
+
 export const videos = sqliteTable('videos', {
     id: integer('id').primaryKey(),
     youtubeId: text('youtube_id').notNull().unique(),
@@ -88,6 +90,7 @@ export const videos = sqliteTable('videos', {
     createdAt: text('created_at')
         .default(sql`CURRENT_TIMESTAMP`)
         .notNull(),
+    visible: integer('visible').notNull().default(1), // 1 = true, 0 = false
 });
 
 export const videoTags = sqliteTable(

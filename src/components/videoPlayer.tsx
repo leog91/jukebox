@@ -2,12 +2,20 @@
 
 import { YouTubeEmbed } from "@next/third-parties/google";
 import { useRef, useState } from "react";
+import { toggleVideoVisibility } from "../app/videos/action";
 
 type Props = {
-  videos: { youtubeId: string; title: string }[];
+  videos: {
+    id: number;
+    youtubeId: string;
+    title: string;
+    createdAt: string;
+    visible: number;
+  }[];
+  isAdmin: boolean;
 };
 
-export default function VideoPlayer({ videos }: Props) {
+export default function VideoPlayer({ videos, isAdmin }: Props) {
   const [playerId, setPlayerId] = useState(videos[0]?.youtubeId);
   const playerRef = useRef<HTMLDivElement>(null);
 
@@ -15,6 +23,9 @@ export default function VideoPlayer({ videos }: Props) {
     setPlayerId(id);
     playerRef.current?.scrollIntoView({ behavior: "smooth" });
   };
+  const filteredVideos = isAdmin
+    ? videos
+    : videos.filter((v) => v.visible === 1);
 
   return (
     <div className="flex  flex-col">
@@ -26,20 +37,36 @@ export default function VideoPlayer({ videos }: Props) {
       </div>
 
       <div className="flex flex-col bg-neutral-900 mt-6  rounded-lg divide-y divide-gray-00 shadow-inner">
-        {videos.map((video) => {
+        {filteredVideos.map((video) => {
           const isActive = playerId === video.youtubeId;
 
           return (
-            <div
-              key={video.youtubeId}
-              onClick={() => handleVideoClick(video.youtubeId)}
-              className={`cursor-pointer px-4 py-3 transition-colors ${
-                isActive
-                  ? "border-l-4 border-white bg-green-800 text-white font-semibold"
-                  : "hover:bg-green-700"
-              }`}
-            >
-              {video.title}
+            <div key={video.youtubeId}>
+              <div
+                onClick={() => handleVideoClick(video.youtubeId)}
+                className={`cursor-pointer px-4 py-3 transition-colors ${
+                  isActive
+                    ? "border-l-4 border-white bg-green-800 text-white font-semibold"
+                    : "hover:bg-green-700"
+                }`}
+              >
+                {video.title}
+              </div>
+              <div>
+                {isAdmin ? (
+                  <button
+                    className={`cursor-pointer w-full ${
+                      video.visible ? "bg-red-500" : "bg-green-500"
+                    }`}
+                    onClick={
+                      () => toggleVideoVisibility(video.id, video.visible === 0) // flip visibility
+                    }
+                    // disabled={isPending}
+                  >
+                    {video.visible ? "Hide" : "Show"}
+                  </button>
+                ) : null}
+              </div>
             </div>
           );
         })}

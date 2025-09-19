@@ -25,7 +25,7 @@ async function Page() {
           </Link>
         </div>
       ) : null}
-      <VideoPlayer videos={videos} />
+      <VideoPlayer isAdmin={isAdmin} videos={videos} />
     </div>
   );
 }
