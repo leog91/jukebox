@@ -4,6 +4,7 @@
 import { db } from "@/src/db/db";
 import { videos } from "@/src/db/schema";
 import { eq } from 'drizzle-orm'
+import { revalidatePath } from "next/cache";
 
 export async function getVideos() {
   const videoList = await db.select().from(videos);
@@ -30,6 +31,8 @@ export async function toggleVideoVisibility(
       .update(videos)
       .set({ visible: visible ? 1 : 0 })
       .where(eq(videos.id, id))
+
+    revalidatePath("/videos");
 
     return {
       success: true,
