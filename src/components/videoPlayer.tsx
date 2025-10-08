@@ -1,7 +1,7 @@
 "use client";
 
 import { YouTubeEmbed } from "@next/third-parties/google";
-import { useRef, useState } from "react";
+import { useRef, useState, useTransition } from "react";
 import { toggleVideoVisibility } from "../app/videos/action";
 
 type Props = {
@@ -16,16 +16,22 @@ type Props = {
 };
 
 export default function VideoPlayer({ videos, isAdmin }: Props) {
-  const [playerId, setPlayerId] = useState(videos[0]?.youtubeId);
+  const [playerId, setPlayerId] = useState(
+    videos.filter((v) => v.visible === 1)[0]?.youtubeId
+  );
+
   const playerRef = useRef<HTMLDivElement>(null);
+
+  const [isPending, startTransition] = useTransition();
+
+  const filteredVideos = isAdmin
+    ? videos
+    : videos.filter((v) => v.visible === 1);
 
   const handleVideoClick = (id: string) => {
     setPlayerId(id);
     playerRef.current?.scrollIntoView({ behavior: "smooth" });
   };
-  const filteredVideos = isAdmin
-    ? videos
-    : videos.filter((v) => v.visible === 1);
 
   return (
     <div className="flex  flex-col">
@@ -55,15 +61,24 @@ export default function VideoPlayer({ videos, isAdmin }: Props) {
               <div>
                 {isAdmin ? (
                   <button
-                    className={`cursor-pointer w-full ${
+                    className={`cursor-pointer w-full py-2 font-semibold ${
                       video.visible ? "bg-red-500" : "bg-green-500"
-                    }`}
-                    onClick={
-                      () => toggleVideoVisibility(video.id, video.visible === 0) // flip visibility
+                    } ${isPending ? "opacity-50 cursor-not-allowed" : ""}`}
+                    disabled={isPending}
+                    onClick={() =>
+                      startTransition(() => {
+                        void toggleVideoVisibility(
+                          video.id,
+                          video.visible === 0
+                        );
+                      })
                     }
-                    // disabled={isPending}
                   >
-                    {video.visible ? "Hide" : "Show"}
+                    {isPending
+                      ? "Processing..."
+                      : video.visible
+                      ? "Hide"
+                      : "Show"}
                   </button>
                 ) : null}
               </div>
