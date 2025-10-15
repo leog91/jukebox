@@ -2,6 +2,8 @@ import { UserButton } from "@clerk/nextjs";
 import { HomeIcon } from "./icons/homeIcon";
 import { auth } from "@clerk/nextjs/server";
 import Link from "next/link";
+import SignUpLink from "./SignUpLink";
+import SignInLink from "./SignInLink";
 
 export async function Header() {
   const { userId } = await auth();
@@ -41,21 +43,20 @@ export async function Header() {
         </Link>
       </div>
 
-      <div className="flex items-center  justify-center">
+      <div className="flex items-center   justify-center">
         {userId ? (
-          <UserButton
-            appearance={{
-              elements: { userButtonAvatarBox: "w-12 h-12" },
-            }}
-          />
+          <div className="scale-150 flex justify-center ">
+            <UserButton
+              appearance={{
+                elements: {
+                  userButtonAvatarBox: "w-12 h-12",
+                },
+              }}
+            />
+          </div>
         ) : (
           <div>
-            <Link
-              href="/sign-in"
-              className="bg-white text-black rounded-full  p-3 font-semibold hover:bg-gray-300"
-            >
-              Log in
-            </Link>
+            <SignInLink />
           </div>
         )}
       </div>
