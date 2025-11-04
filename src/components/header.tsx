@@ -19,15 +19,6 @@ export async function Header() {
       <div>
         <Link
           className="bg-white text-black rounded-full  p-3 font-semibold hover:bg-gray-300"
-          href="/videos"
-        >
-          Videos
-        </Link>
-      </div>
-
-      <div>
-        <Link
-          className="bg-white text-black rounded-full  p-3 font-semibold hover:bg-gray-300"
           href="/albums"
         >
           Albums
