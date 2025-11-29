@@ -1,8 +1,7 @@
 "use client";
 
 import { Mp3Player } from "@/src/components/Mp3Player";
-import { MusicPick } from "@/src/components/MusicPick";
-import PlayList from "@/src/components/PlayList";
+
 import React, { useState } from "react";
 
 type Component = "PLAYLIST" | "MP3PLAYER" | "MUSIC_PICK";
@@ -61,41 +60,6 @@ export default function Mocks() {
       <div className="  w-full bg-stone-400 text-center text-lg font-light text-black border-y-2 border-gray-200 py-1">
         Playlist
       </div>
-
-      {showComponent.includes("PLAYLIST") ? (
-        <div className=" flex flex-col  items-center">
-          <HideComponent
-            component="PLAYLIST"
-            setShowComponent={setShowComponent}
-            showingComponents={showComponent}
-          />
-          <PlayList />{" "}
-        </div>
-      ) : (
-        <ShowComponent
-          component="PLAYLIST"
-          setShowComponent={setShowComponent}
-          showingComponents={showComponent}
-        />
-      )}
-
-      {showComponent.includes("MUSIC_PICK") ? (
-        <div className=" flex flex-col w-full items-center">
-          <HideComponent
-            component="MUSIC_PICK"
-            setShowComponent={setShowComponent}
-            showingComponents={showComponent}
-          />
-
-          <MusicPick />
-        </div>
-      ) : (
-        <ShowComponent
-          component="MUSIC_PICK"
-          setShowComponent={setShowComponent}
-          showingComponents={showComponent}
-        />
-      )}
     </div>
   );
 }
