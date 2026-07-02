@@ -28,23 +28,23 @@ export default function Page() {
         <form action={action} className="flex flex-col space-y-4 ">
           <div className="flex flex-col space-y-1">
             <label className="text-zinc-300" htmlFor="youtubeId">
-              YoutubeId
+              YouTube URL or ID
             </label>
             <input
               id="youtubeId"
               name="youtubeId"
-              placeholder="Add a youtubeId"
+              placeholder="Paste a YouTube link or video ID"
               defaultValue={state?.inputs?.youtubeId}
               required
               minLength={1}
-              maxLength={100}
+              maxLength={200}
               aria-describedby="youtubeId-error"
               className={`${
                 state?.errors?.youtubeId ? "border-red-500" : ""
               } bg-neutral-700 text-white placeholder-neutral-400 pl-2`}
             />
             {state?.errors?.youtubeId && (
-              <p id="artist-error" className="text-sm text-red-500">
+              <p id="youtubeId-error" className="text-sm text-red-500">
                 {state.errors.youtubeId[0]}
               </p>
             )}
