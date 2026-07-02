@@ -9,6 +9,9 @@ import { Header } from "../components/header";
 export const metadata: Metadata = {
   title: "Home",
   description: "Welcome to Next.js",
+  icons: {
+    icon: "/vinyl.svg",
+  },
 };
 
 export default function RootLayout({
