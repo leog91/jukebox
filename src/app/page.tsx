@@ -14,7 +14,13 @@ async function Page() {
   return (
     <div className="min-h-screen  bg-black flex flex-col justify-center  w-full  items-center  ">
       {isAdmin ? (
-        <div className="flex w-full  justify-end max-w-2xl">
+        <div className="flex w-full justify-end gap-2 max-w-2xl">
+          <Link
+            className="bg-red-600 flex space-x-0.5 justify-center items-center max-w-sm text-white text-sm font-semibold m-2 p-1.5 px-2 rounded-3xl"
+            href="/videos/trash"
+          >
+            <p>Trash</p>
+          </Link>
           <Link
             className="bg-green-500 flex space-x-0.5 justify-center items-center   max-w-sm  text-black text-sm font-semibold  m-2  p-1.5 px-2 rounded-3xl"
             href="/videos/add"

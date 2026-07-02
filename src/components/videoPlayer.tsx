@@ -2,7 +2,7 @@
 
 import { YouTubeEmbed } from "@next/third-parties/google";
 import { useRef, useState, useTransition } from "react";
-import { toggleVideoVisibility } from "../app/videos/action";
+import { softDeleteVideo, toggleVideoVisibility } from "../app/videos/action";
 
 type Props = {
   videos: {
@@ -59,9 +59,10 @@ export default function VideoPlayer({ videos, isAdmin }: Props) {
                 {video.title}
               </div>
               <div>
-                {isAdmin ? (
+              {isAdmin ? (
+                <div className="flex gap-1">
                   <button
-                    className={`cursor-pointer w-full py-2 font-semibold ${
+                    className={`cursor-pointer flex-1 py-2 font-semibold ${
                       video.visible ? "bg-red-500" : "bg-green-500"
                     } ${isPending ? "opacity-50 cursor-not-allowed" : ""}`}
                     disabled={isPending}
@@ -80,7 +81,21 @@ export default function VideoPlayer({ videos, isAdmin }: Props) {
                       ? "Hide"
                       : "Show"}
                   </button>
-                ) : null}
+                  <button
+                    className={`cursor-pointer flex-1 py-2 font-semibold bg-zinc-600 hover:bg-zinc-500 text-white ${
+                      isPending ? "opacity-50 cursor-not-allowed" : ""
+                    }`}
+                    disabled={isPending}
+                    onClick={() =>
+                      startTransition(() => {
+                        void softDeleteVideo(video.id);
+                      })
+                    }
+                  >
+                    {isPending ? "Processing..." : "Trash"}
+                  </button>
+                </div>
+              ) : null}
               </div>
             </div>
           );

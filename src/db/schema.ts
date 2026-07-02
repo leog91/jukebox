@@ -91,6 +91,7 @@ export const videos = sqliteTable('videos', {
         .default(sql`CURRENT_TIMESTAMP`)
         .notNull(),
     visible: integer('visible').notNull().default(1), // 1 = true, 0 = false
+    deletedAt: text('deleted_at'), // null = active, ISO timestamp = soft-deleted
 });
 
 export const videoTags = sqliteTable(
