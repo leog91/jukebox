@@ -58,44 +58,23 @@ export async function addArtistWithGenre(form: FormData) {
 
 
 
-    const name = form.get("name") + ""
-    const genresInput = form.getAll("genre") + "";
+    const name = String(form.get("name") ?? "").trim();
+    const genreNames = form
+        .getAll("genre")
+        .map((genre) => String(genre).trim())
+        .filter(Boolean);
 
+    if (!name) redirect("/pick");
 
+    await db.insert(artists).values({ name }).onConflictDoNothing();
+    if (genreNames.length > 0) {
+        await db
+            .insert(genres)
+            .values(genreNames.map((name) => ({ name })))
+            .onConflictDoNothing();
+    }
 
-
-    // try {
-    //     await db.insert(artists).values({ name })
-    // } catch (e) {
-    //     console.log("addArtist =>", e)
-    //     //fix msg
-    //     return { msg: "maybe not unique" }
-    // }
-
-    // TO_+DO split 
-    const genresArr = genresInput.split(",")
-
-    genresArr.forEach(async (g) => {
-        try {
-            await db.insert(genres).values({ name })
-        } catch (e) {
-            console.log("addGenre =>", e, " elem =>", g)
-            //fix msg
-            return { msg: "maybe not unique" }
-        }
-
-    });
-
-    // try {
-    //     await db.insert(genres).values({ name })
-    // } catch (e) {
-    //     console.log("addGenre =>", e)
-    //     //fix msg
-    //     return { msg: "maybe not unique" }
-    // }
-
-    //revalidate?
-    // redirect("/pick/add");
+    redirect("/pick");
 }
 
 

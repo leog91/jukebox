@@ -5,7 +5,7 @@ import { and, eq } from "drizzle-orm";
 import { revalidatePath } from "next/cache";
 import { z } from "zod";
 import { db } from "@/src/db/db";
-import { lists } from "@/src/db/schema";
+import { artistList, artists, lists } from "@/src/db/schema";
 
 export type ListActionState = {
   success: boolean;
@@ -74,4 +74,74 @@ export async function updateListSharing(
     success: true,
     message: isShared ? "List is now shared" : "List is now private",
   };
+}
+
+async function canEditList(listId: number, userId: string) {
+  const [list] = await db
+    .select({ id: lists.id })
+    .from(lists)
+    .where(and(eq(lists.id, listId), eq(lists.ownerId, userId)));
+
+  return Boolean(list);
+}
+
+function getListAndArtistIds(formData: FormData) {
+  const listId = Number(formData.get("listId"));
+  const artistId = Number(formData.get("artistId"));
+
+  return {
+    listId: Number.isInteger(listId) && listId > 0 ? listId : null,
+    artistId: Number.isInteger(artistId) && artistId > 0 ? artistId : null,
+  };
+}
+
+export async function addArtistToList(
+  _previousState: ListActionState,
+  formData: FormData
+): Promise<ListActionState> {
+  const userId = await getUserId();
+  if (!userId) return { success: false, message: "Unauthorized" };
+
+  const { listId, artistId } = getListAndArtistIds(formData);
+  if (!listId || !artistId) return { success: false, message: "Invalid artist or list" };
+  if (!(await canEditList(listId, userId))) {
+    return { success: false, message: "List not found" };
+  }
+
+  const [artist] = await db
+    .select({ id: artists.id })
+    .from(artists)
+    .where(eq(artists.id, artistId));
+  if (!artist) return { success: false, message: "Artist not found" };
+
+  await db
+    .insert(artistList)
+    .values({ listId, artistId })
+    .onConflictDoNothing();
+
+  revalidatePath(`/me/lists/${listId}`);
+  revalidatePath(`/lists/${listId}`);
+  return { success: true, message: "Artist added to list" };
+}
+
+export async function removeArtistFromList(
+  _previousState: ListActionState,
+  formData: FormData
+): Promise<ListActionState> {
+  const userId = await getUserId();
+  if (!userId) return { success: false, message: "Unauthorized" };
+
+  const { listId, artistId } = getListAndArtistIds(formData);
+  if (!listId || !artistId) return { success: false, message: "Invalid artist or list" };
+  if (!(await canEditList(listId, userId))) {
+    return { success: false, message: "List not found" };
+  }
+
+  await db
+    .delete(artistList)
+    .where(and(eq(artistList.listId, listId), eq(artistList.artistId, artistId)));
+
+  revalidatePath(`/me/lists/${listId}`);
+  revalidatePath(`/lists/${listId}`);
+  return { success: true, message: "Artist removed from list" };
 }

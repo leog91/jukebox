@@ -27,8 +27,9 @@ export function AddArtistWithGenre() {
             // maxLength="10"
             required
           />
-          <button
-            className="bg-red-500"
+            <button
+              type="button"
+              className="bg-red-500"
             onClick={() => setGenres(genres.filter((genre) => genre !== g!))}
           >
             X
@@ -36,6 +37,7 @@ export function AddArtistWithGenre() {
         </div>
       ))}
       <button
+        type="button"
         className="bg-gray-500"
         onClick={() =>
           setGenres([...genres, Math.floor(Math.random() * 10000000)])
