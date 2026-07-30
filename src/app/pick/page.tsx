@@ -13,10 +13,12 @@ async function Pick(props: {
   const isAdmin =
     process.env.ADMIN_EMAIL === user?.emailAddresses[0].emailAddress;
 
-  let p = "1";
-  if (searchParams.page) {
-    p = searchParams.page[0];
-  }
+  const pageParam = Array.isArray(searchParams.page)
+    ? searchParams.page[0]
+    : searchParams.page;
+  const pageNumber = Number(pageParam);
+  const p =
+    Number.isInteger(pageNumber) && pageNumber > 0 ? String(pageNumber) : "1";
 
   return (
     <div className="min-h-screen bg-black flex flex-col m-auto max-w-2xl  items-center ">
