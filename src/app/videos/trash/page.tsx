@@ -1,15 +1,13 @@
-import { currentUser } from "@clerk/nextjs/server";
 import Link from "next/link";
 import { redirect } from "next/navigation";
 import { getTrashedVideos } from "../action";
 import { TrashList } from "./TrashList";
+import { isAdmin } from "@/src/lib/auth";
 
 export default async function TrashPage() {
-  const user = await currentUser();
-  const isAdmin =
-    process.env.ADMIN_EMAIL === user?.emailAddresses[0]?.emailAddress;
+  const hasAdminAccess = await isAdmin();
 
-  if (!isAdmin) {
+  if (!hasAdminAccess) {
     redirect("/");
   }
 

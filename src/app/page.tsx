@@ -1,18 +1,16 @@
-import { currentUser } from "@clerk/nextjs/server";
 import VideoPlayer from "@/src/components/videoPlayer";
 import { getVideos } from "./videos/action";
 import Link from "next/link";
 import { PlusIcon } from "@/src/components/icons/plusIcon";
+import { isAdmin } from "@/src/lib/auth";
 
 async function Page() {
-  const user = await currentUser();
-  const isAdmin =
-    process.env.ADMIN_EMAIL === user?.emailAddresses[0].emailAddress;
-  const videos = await getVideos(isAdmin);
+  const hasAdminAccess = await isAdmin();
+  const videos = await getVideos(hasAdminAccess);
 
   return (
     <div className="min-h-screen  bg-black flex flex-col justify-center  w-full  items-center  ">
-      {isAdmin ? (
+      {hasAdminAccess ? (
         <div className="flex w-full justify-end gap-2 max-w-2xl">
           <Link
             className="bg-red-600 flex space-x-0.5 justify-center items-center max-w-sm text-white text-sm font-semibold m-2 p-1.5 px-2 rounded-3xl"
@@ -29,7 +27,7 @@ async function Page() {
           </Link>
         </div>
       ) : null}
-      <VideoPlayer isAdmin={isAdmin} videos={videos} />
+      <VideoPlayer isAdmin={hasAdminAccess} videos={videos} />
     </div>
   );
 }

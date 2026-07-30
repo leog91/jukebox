@@ -1,21 +1,19 @@
 import React from "react";
 
-import { currentUser } from "@clerk/nextjs/server";
 //remove ?
 import Link from "next/link";
 
 import { getAlbums } from "./action";
 import { PlusIcon } from "@/src/components/icons/plusIcon";
+import { isAdmin } from "@/src/lib/auth";
 
 async function Page() {
   const albums = await getAlbums();
-  const user = await currentUser();
-  const isAdmin =
-    process.env.ADMIN_EMAIL === user?.emailAddresses[0].emailAddress;
+  const hasAdminAccess = await isAdmin();
 
   return (
     <div className="min-h-screen bg-black flex flex-col   w-full  items-center  ">
-      {isAdmin ? (
+      {hasAdminAccess ? (
         <div className="flex w-full  justify-end max-w-2xl">
           <Link
             className="bg-green-500 flex space-x-0.5 justify-center items-center   max-w-sm  text-black text-sm font-semibold  m-2  p-1.5 px-2 rounded-3xl"

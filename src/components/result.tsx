@@ -1,11 +1,9 @@
 import Link from "next/link";
-import { currentUser } from "@clerk/nextjs/server";
 import { getArtists } from "../app/action";
+import { isAdmin } from "@/src/lib/auth";
 
 export async function Result({ page }: { page: string }) {
-  const user = await currentUser();
-  const isAdmin =
-    process.env.ADMIN_EMAIL === user?.emailAddresses[0].emailAddress;
+  const hasAdminAccess = await isAdmin();
 
   const res = await getArtists(Number(page) - 1);
 
@@ -18,7 +16,7 @@ export async function Result({ page }: { page: string }) {
         >
           <div>{r.name} </div>
           <div className="flex space-x-2">
-            {isAdmin ? (
+            {hasAdminAccess ? (
               <Link
                 className="bg-yellow-500    max-w-sm  text-black text-sm font-semibold   rounded-3xl"
                 href={`/pick/artist/${r.name.replaceAll(" ", "_")}`}

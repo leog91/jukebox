@@ -1,7 +1,7 @@
 import { getArtist } from "../../../action";
-import { currentUser } from "@clerk/nextjs/server";
 import { Delete } from "./delete";
 import { Artist } from "./action";
+import { isAdmin } from "@/src/lib/auth";
 
 export default async function Page(props: {
   params: Promise<{ artist: string }>;
@@ -11,9 +11,7 @@ export default async function Page(props: {
     await getArtist(params.artist.replaceAll("_", " "))
   )[0];
 
-  const user = await currentUser();
-  const isAdmin =
-    process.env.ADMIN_EMAIL === user?.emailAddresses[0].emailAddress;
+  const hasAdminAccess = await isAdmin();
 
   return (
     <div className="min-h-screen justify-center bg-black flex flex-col  items-center ">
@@ -43,7 +41,7 @@ export default async function Page(props: {
                 dateStyle: "full",
                 timeStyle: "long",
               }).format(new Date(artist.createdAt))}
-              {isAdmin ? <Delete artist={artist} /> : null}
+              {hasAdminAccess ? <Delete artist={artist} /> : null}
             </div>
           </div>
         </div>

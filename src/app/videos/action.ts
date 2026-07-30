@@ -4,16 +4,11 @@ import { db } from "@/src/db/db";
 import { videos } from "@/src/db/schema";
 import { and, eq, isNull, isNotNull } from "drizzle-orm";
 import { revalidatePath } from "next/cache";
-import { currentUser } from "@clerk/nextjs/server";
+import { isAdmin } from "@/src/lib/auth";
 
 export interface ActionResponse {
   success: boolean;
   message: string;
-}
-
-async function checkIsAdmin(): Promise<boolean> {
-  const user = await currentUser();
-  return process.env.ADMIN_EMAIL === user?.emailAddresses[0]?.emailAddress;
 }
 
 export async function getVideos(includeHidden = false) {
@@ -42,7 +37,7 @@ export async function toggleVideoVisibility(
   id: number,
   visible: boolean
 ): Promise<ActionResponse> {
-  if (!(await checkIsAdmin())) {
+  if (!(await isAdmin())) {
     return { success: false, message: "Unauthorized" };
   }
 
@@ -69,7 +64,7 @@ export async function toggleVideoVisibility(
 }
 
 export async function softDeleteVideo(id: number): Promise<ActionResponse> {
-  if (!(await checkIsAdmin())) {
+  if (!(await isAdmin())) {
     return { success: false, message: "Unauthorized" };
   }
 
@@ -97,7 +92,7 @@ export async function softDeleteVideo(id: number): Promise<ActionResponse> {
 }
 
 export async function restoreVideo(id: number): Promise<ActionResponse> {
-  if (!(await checkIsAdmin())) {
+  if (!(await isAdmin())) {
     return { success: false, message: "Unauthorized" };
   }
 
@@ -127,7 +122,7 @@ export async function restoreVideo(id: number): Promise<ActionResponse> {
 export async function permanentlyDeleteVideo(
   id: number
 ): Promise<ActionResponse> {
-  if (!(await checkIsAdmin())) {
+  if (!(await isAdmin())) {
     return { success: false, message: "Unauthorized" };
   }
 
