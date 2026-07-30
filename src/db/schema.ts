@@ -1,5 +1,5 @@
 import { sql } from "drizzle-orm";
-import { text, sqliteTable, integer, primaryKey } from "drizzle-orm/sqlite-core";
+import { text, sqliteTable, integer, primaryKey, uniqueIndex } from "drizzle-orm/sqlite-core";
 
 const foo = sqliteTable("foo", {
     bar: text("bar").notNull().default("Hey!"),
@@ -39,15 +39,16 @@ export const albums = sqliteTable("albums", {
 
 
 export const lists = sqliteTable('lists', {
-    id: integer()
-        .primaryKey(),
-    name: text('name')
-        .notNull()
-        .unique(),
+    id: integer().primaryKey(),
+    ownerId: text('owner_id').notNull(),
+    name: text('name').notNull(),
+    isShared: integer('is_shared', { mode: 'boolean' }).notNull().default(false),
     createdAt: text('created_at')
         .default(sql`CURRENT_TIMESTAMP`)
         .notNull(),
-});
+}, (table) => [
+    uniqueIndex('lists_owner_name_unique').on(table.ownerId, table.name),
+]);
 
 
 export const artistList = sqliteTable("artist_list", {

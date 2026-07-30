@@ -34,6 +34,17 @@ export async function Header() {
         </Link>
       </div>
 
+      {userId ? (
+        <div>
+          <Link
+            className="bg-white text-black rounded-full p-3 font-semibold hover:bg-gray-300"
+            href="/me/lists"
+          >
+            My Lists
+          </Link>
+        </div>
+      ) : null}
+
       <div className="flex items-center   justify-center">
         {userId ? (
           <div className="scale-150 flex justify-center ">
