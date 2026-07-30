@@ -18,7 +18,9 @@ export default function Page() {
   const [state, action, isPending] = useActionState(submitArtist, initialState);
   return (
     <div className="min-h-screen justify-center bg-black flex flex-col  items-center ">
-      {state.message !== "" && <Notification message={state.message} />}
+      {state.message !== "" && (
+        <Notification message={state.message} success={state.success} />
+      )}
 
       <form
         className=" my-3 bg-neutral-900 rounded-md space-x-2 p-2 "

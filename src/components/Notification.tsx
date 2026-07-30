@@ -1,20 +1,19 @@
-import { useState } from "react";
-
-export default function Notification({ message }: { message: string }) {
-  //   const [isOpen, setIsOpen] = useState(true);
-
+export default function Notification({
+  message,
+  success,
+}: {
+  message: string;
+  success: boolean;
+}) {
   return (
     <div
-      className={` 
-            
-            //   p-2 top-1/3 absolute  font-semibold text-black  bg-amber-100`}
+      aria-live="polite"
+      className={`mb-4 rounded-md px-3 py-2 text-sm font-medium ${
+        success
+          ? "bg-green-950 text-green-300"
+          : "bg-red-950 text-red-300"
+      }`}
     >
-      {/* <button
-        className="absolute right-1 -top-0.5 h-3 w-3  text-center items-center justify-center flex bg-red-500 "
-        onClick={() => setIsOpen(false)}
-      >
-        X{" "}
-      </button> */}
       {message}
     </div>
   );

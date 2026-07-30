@@ -5,6 +5,7 @@ import { submitVideo } from "./action";
 
 import type { ActionResponse } from "./action";
 import { CloseIcon } from "@/src/components/icons/closeIcon";
+import Notification from "@/src/components/Notification";
 import Link from "next/link";
 
 const initialState: ActionResponse = {
@@ -25,6 +26,9 @@ export default function Page() {
         <div className="text-white my-2  font-light text-4xl text-center ">
           Video{" "}
         </div>
+        {state.message !== "" && (
+          <Notification message={state.message} success={state.success} />
+        )}
         <form action={action} className="flex flex-col space-y-4 ">
           <div className="flex flex-col space-y-1">
             <label className="text-zinc-300" htmlFor="youtubeId">

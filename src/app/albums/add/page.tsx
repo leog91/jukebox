@@ -5,6 +5,7 @@ import { submitAlbum } from "./action";
 
 import type { ActionResponse } from "./action";
 import { CloseIcon } from "@/src/components/icons/closeIcon";
+import Notification from "@/src/components/Notification";
 import Link from "next/link";
 
 const initialState: ActionResponse = {
@@ -25,6 +26,9 @@ export default function Page() {
         <div className="text-white my-2  font-light text-4xl text-center ">
           Album{" "}
         </div>
+        {state.message !== "" && (
+          <Notification message={state.message} success={state.success} />
+        )}
         <form action={action} className="flex flex-col space-y-4 ">
           <div className="flex flex-col space-y-1">
             <label className="text-zinc-300" htmlFor="artist">
@@ -44,7 +48,7 @@ export default function Page() {
               } bg-neutral-700 text-white placeholder-neutral-400 pl-2`}
             />
             {state?.errors?.artist && (
-              <p id="artist-error" className="text-sm text-red-500">
+              <p id="cover-error" className="text-sm text-red-500">
                 {state.errors.artist[0]}
               </p>
             )}
