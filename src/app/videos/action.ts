@@ -2,7 +2,7 @@
 
 import { db } from "@/src/db/db";
 import { videos } from "@/src/db/schema";
-import { eq, isNull, isNotNull } from "drizzle-orm";
+import { and, eq, isNull, isNotNull } from "drizzle-orm";
 import { revalidatePath } from "next/cache";
 import { currentUser } from "@clerk/nextjs/server";
 
@@ -16,11 +16,15 @@ async function checkIsAdmin(): Promise<boolean> {
   return process.env.ADMIN_EMAIL === user?.emailAddresses[0]?.emailAddress;
 }
 
-export async function getVideos() {
+export async function getVideos(includeHidden = false) {
   const videoList = await db
     .select()
     .from(videos)
-    .where(isNull(videos.deletedAt));
+    .where(
+      includeHidden
+        ? isNull(videos.deletedAt)
+        : and(isNull(videos.deletedAt), eq(videos.visible, 1))
+    );
 
   return videoList;
 }

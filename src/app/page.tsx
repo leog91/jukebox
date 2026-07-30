@@ -5,11 +5,10 @@ import Link from "next/link";
 import { PlusIcon } from "@/src/components/icons/plusIcon";
 
 async function Page() {
-  const videos = await getVideos();
-
   const user = await currentUser();
   const isAdmin =
     process.env.ADMIN_EMAIL === user?.emailAddresses[0].emailAddress;
+  const videos = await getVideos(isAdmin);
 
   return (
     <div className="min-h-screen  bg-black flex flex-col justify-center  w-full  items-center  ">
