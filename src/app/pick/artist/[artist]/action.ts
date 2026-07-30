@@ -5,6 +5,7 @@ import { db } from "@/src/db/db";
 import { artists } from "@/src/db/schema";
 import { eq } from "drizzle-orm";
 import { redirect } from 'next/navigation'
+import { isAdmin } from "@/src/lib/auth";
 
 
 
@@ -24,6 +25,14 @@ export type Artist = {
 
 
 export async function deleteArtist(artistParam: Artist): Promise<ActionResponse> {
+
+    if (!(await isAdmin())) {
+        return {
+            success: false,
+            message: "Unauthorized",
+            artist: artistParam,
+        }
+    }
 
     try {
         //limit not working
@@ -51,4 +60,3 @@ export async function deleteArtist(artistParam: Artist): Promise<ActionResponse>
     redirect('/pick')
 
 }
-

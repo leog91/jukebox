@@ -3,9 +3,12 @@ import { eq, sql } from "drizzle-orm";
 import { db } from "../db/db";
 import { artists, genres } from "../db/schema"
 import { redirect } from "next/navigation";
+import { isAdmin } from "@/src/lib/auth";
 
 
 export async function submit(form: FormData) {
+
+    if (!(await isAdmin())) redirect("/");
 
     const name = form.get("text") + "";
     // console.log(text)
@@ -28,6 +31,8 @@ export async function submit(form: FormData) {
 
 export async function addGenre(form: FormData) {
 
+    if (!(await isAdmin())) redirect("/");
+
     const name = form.get("genre") + "";
     // console.log(text)
     // if (!/^[\p{Emoji}]+$/u.test(text)) return;
@@ -48,6 +53,8 @@ export async function addGenre(form: FormData) {
 
 
 export async function addArtistWithGenre(form: FormData) {
+
+    if (!(await isAdmin())) redirect("/");
 
 
 

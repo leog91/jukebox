@@ -41,6 +41,7 @@ export async function Result({ page }: { page: string }) {
               </Link>
             ) : null}
             <a
+              aria-label={`Open ${r.name} in Spotify`}
               href={`https://open.spotify.com/search/${r.name}`}
               target="_blank"
             >
@@ -70,12 +71,12 @@ export async function Result({ page }: { page: string }) {
         //pick/artist/
       ))}
       <div className="flex justify-evenly">
-        <Link
-          className={`${
-            Number(page) > 1 ? "bg-green-500" : "bg-gray-500"
-          }  text-2xl   max-w-sm  text-black  font-semibold   px-1 rounded-3xl`}
-          href={`/pick?page=${Number(page) - 1}`}
-        >
+        {Number(page) > 1 ? (
+          <Link
+            aria-label="Previous page"
+            className="bg-green-500 text-2xl max-w-sm text-black font-semibold px-1 rounded-3xl"
+            href={`/pick?page=${Number(page) - 1}`}
+          >
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="24"
@@ -89,9 +90,30 @@ export async function Result({ page }: { page: string }) {
           >
             <path d="m15 18-6-6 6-6" />
           </svg>
-        </Link>
+          </Link>
+        ) : (
+          <span
+            aria-disabled="true"
+            className="bg-gray-500 text-2xl max-w-sm text-black font-semibold px-1 rounded-3xl"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            >
+              <path d="m15 18-6-6 6-6" />
+            </svg>
+          </span>
+        )}
 
         <Link
+          aria-label="Next page"
           className="bg-green-500  text-2xl   max-w-sm  text-black  font-semibold  px-1 rounded-3xl"
           href={`/pick?page=${Number(page) + 1}`}
         >

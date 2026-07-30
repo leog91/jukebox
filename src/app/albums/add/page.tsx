@@ -18,7 +18,7 @@ export default function Page() {
     <div className="min-h-screen  text-white justify-center bg-black flex flex-col  items-center ">
       <div className="bg-zinc-800 rounded-2xl w-full max-w-xl p-6">
         <div className="flex justify-end">
-          <Link className=" " href="/albums">
+          <Link aria-label="Close" href="/albums">
             <CloseIcon />
           </Link>
         </div>

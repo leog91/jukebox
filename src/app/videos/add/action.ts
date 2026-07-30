@@ -3,6 +3,7 @@
 import { z } from 'zod'
 import { db } from '@/src/db/db';
 import { videos } from '@/src/db/schema';
+import { isAdmin } from "@/src/lib/auth";
 
 function extractYoutubeId(input: string): string | null {
     const trimmed = input.trim();
@@ -85,6 +86,13 @@ const videoSchema = z.object({
 export async function submitVideo(prevState: ActionResponse | null, formData: FormData): Promise<ActionResponse> {
 
     try {
+        if (!(await isAdmin())) {
+            return {
+                success: false,
+                message: "Unauthorized",
+            }
+        }
+
         const rawData: VideoFormData = {
             youtubeId: formData.get('youtubeId') as string,
             title: formData.get('title') as string,

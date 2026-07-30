@@ -3,6 +3,7 @@
 import { z } from 'zod'
 import { db } from '@/src/db/db';
 import { albums } from '@/src/db/schema';
+import { isAdmin } from "@/src/lib/auth";
 
 
 export interface AlbumFormData {
@@ -32,6 +33,13 @@ const albumSchema = z.object({
 export async function submitAlbum(prevState: ActionResponse | null, formData: FormData): Promise<ActionResponse> {
 
     try {
+        if (!(await isAdmin())) {
+            return {
+                success: false,
+                message: "Unauthorized",
+            }
+        }
+
         const rawData: AlbumFormData = {
             artist: formData.get('artist') as string,
             name: formData.get('name') as string,
@@ -86,4 +94,3 @@ export async function submitAlbum(prevState: ActionResponse | null, formData: Fo
         }
     }
 }
-
