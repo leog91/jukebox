@@ -1,7 +1,12 @@
 "use client";
 
-import { useTransition } from "react";
-import { permanentlyDeleteVideo, restoreVideo } from "../action";
+import { useState, useTransition } from "react";
+import { useRouter } from "next/navigation";
+import {
+  type ActionResponse,
+  permanentlyDeleteVideo,
+  restoreVideo,
+} from "../action";
 
 type Props = {
   videos: {
@@ -16,9 +21,34 @@ type Props = {
 
 export function TrashList({ videos }: Props) {
   const [isPending, startTransition] = useTransition();
+  const [feedback, setFeedback] = useState<ActionResponse | null>(null);
+  const router = useRouter();
+
+  const runVideoAction = (action: () => Promise<ActionResponse>) => {
+    startTransition(async () => {
+      const response = await action();
+      setFeedback(response);
+
+      if (response.success) router.refresh();
+    });
+  };
 
   if (videos.length === 0) {
-    return <div className="text-zinc-400">Trash is empty</div>;
+    return (
+      <div>
+        <div className="text-zinc-400">Trash is empty</div>
+        {feedback ? (
+          <p
+            aria-live="polite"
+            className={`mt-3 text-sm ${
+              feedback.success ? "text-green-400" : "text-red-400"
+            }`}
+          >
+            {feedback.message}
+          </p>
+        ) : null}
+      </div>
+    );
   }
 
   return (
@@ -35,11 +65,7 @@ export function TrashList({ videos }: Props) {
                 isPending ? "opacity-50 cursor-not-allowed" : ""
               }`}
               disabled={isPending}
-              onClick={() =>
-                startTransition(() => {
-                  void restoreVideo(video.id);
-                })
-              }
+              onClick={() => runVideoAction(() => restoreVideo(video.id))}
             >
               Restore
             </button>
@@ -49,9 +75,7 @@ export function TrashList({ videos }: Props) {
               }`}
               disabled={isPending}
               onClick={() =>
-                startTransition(() => {
-                  void permanentlyDeleteVideo(video.id);
-                })
+                runVideoAction(() => permanentlyDeleteVideo(video.id))
               }
             >
               Delete forever
@@ -59,6 +83,16 @@ export function TrashList({ videos }: Props) {
           </div>
         </div>
       ))}
+      {feedback ? (
+        <p
+          aria-live="polite"
+          className={`text-sm ${
+            feedback.success ? "text-green-400" : "text-red-400"
+          }`}
+        >
+          {feedback.message}
+        </p>
+      ) : null}
     </div>
   );
 }

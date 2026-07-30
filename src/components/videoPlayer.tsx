@@ -2,7 +2,12 @@
 
 import { YouTubeEmbed } from "@next/third-parties/google";
 import { useRef, useState, useTransition } from "react";
-import { softDeleteVideo, toggleVideoVisibility } from "../app/videos/action";
+import { useRouter } from "next/navigation";
+import {
+  type ActionResponse,
+  softDeleteVideo,
+  toggleVideoVisibility,
+} from "../app/videos/action";
 
 type Props = {
   videos: {
@@ -19,8 +24,10 @@ export default function VideoPlayer({ videos, isAdmin }: Props) {
   const [playerId, setPlayerId] = useState(
     videos.filter((v) => v.visible === 1)[0]?.youtubeId
   );
+  const [feedback, setFeedback] = useState<ActionResponse | null>(null);
 
   const playerRef = useRef<HTMLDivElement>(null);
+  const router = useRouter();
 
   const [isPending, startTransition] = useTransition();
 
@@ -31,6 +38,15 @@ export default function VideoPlayer({ videos, isAdmin }: Props) {
   const handleVideoClick = (id: string) => {
     setPlayerId(id);
     playerRef.current?.scrollIntoView({ behavior: "smooth" });
+  };
+
+  const runVideoAction = (action: () => Promise<ActionResponse>) => {
+    startTransition(async () => {
+      const response = await action();
+      setFeedback(response);
+
+      if (response.success) router.refresh();
+    });
   };
 
   return (
@@ -58,7 +74,6 @@ export default function VideoPlayer({ videos, isAdmin }: Props) {
               >
                 {video.title}
               </div>
-              <div>
               {isAdmin ? (
                 <div className="flex gap-1">
                   <button
@@ -67,12 +82,12 @@ export default function VideoPlayer({ videos, isAdmin }: Props) {
                     } ${isPending ? "opacity-50 cursor-not-allowed" : ""}`}
                     disabled={isPending}
                     onClick={() =>
-                      startTransition(() => {
-                        void toggleVideoVisibility(
-                          video.id,
-                          video.visible === 0
-                        );
-                      })
+                        runVideoAction(() =>
+                          toggleVideoVisibility(
+                            video.id,
+                            video.visible === 0
+                          )
+                        )
                     }
                   >
                     {isPending
@@ -87,20 +102,27 @@ export default function VideoPlayer({ videos, isAdmin }: Props) {
                     }`}
                     disabled={isPending}
                     onClick={() =>
-                      startTransition(() => {
-                        void softDeleteVideo(video.id);
-                      })
+                        runVideoAction(() => softDeleteVideo(video.id))
                     }
                   >
                     {isPending ? "Processing..." : "Trash"}
                   </button>
                 </div>
               ) : null}
-              </div>
             </div>
           );
         })}
       </div>
+      {feedback ? (
+        <p
+          aria-live="polite"
+          className={`mt-3 text-sm ${
+            feedback.success ? "text-green-400" : "text-red-400"
+          }`}
+        >
+          {feedback.message}
+        </p>
+      ) : null}
     </div>
   );
 }
