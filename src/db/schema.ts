@@ -37,6 +37,11 @@ export const albums = sqliteTable("albums", {
     coverUrl: text("cover_url"),
 });
 
+export const listeningProfiles = sqliteTable("listening_profiles", {
+    userId: text("user_id").primaryKey().notNull(),
+    lastfmUsername: text("lastfm_username").notNull(),
+});
+
 
 export const lists = sqliteTable('lists', {
     id: integer().primaryKey(),

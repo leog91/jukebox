@@ -4,6 +4,8 @@ import { z } from 'zod'
 import { db } from '@/src/db/db';
 import { albums } from '@/src/db/schema';
 import { isAdmin } from "@/src/lib/auth";
+import { sql } from "drizzle-orm";
+import { revalidatePath } from "next/cache";
 
 
 export interface AlbumFormData {
@@ -24,9 +26,9 @@ export interface ActionResponse {
 
 
 const albumSchema = z.object({
-    artist: z.string().min(1, 'Album artist is required'),
-    name: z.string().min(1, "Album name is required"),
-    cover: z.string().optional(),
+    artist: z.string().trim().min(1, 'Album artist is required').max(100),
+    name: z.string().trim().min(1, "Album name is required").max(100),
+    cover: z.union([z.literal(""), z.url().max(2048).refine((value) => ["https:", "http:"].includes(new URL(value).protocol), "Use an HTTP or HTTPS artwork URL")]).optional(),
 
 })
 
@@ -41,9 +43,9 @@ export async function submitAlbum(prevState: ActionResponse | null, formData: Fo
         }
 
         const rawData: AlbumFormData = {
-            artist: formData.get('artist') as string,
-            name: formData.get('name') as string,
-            cover: formData.get('cover') as string,
+            artist: typeof formData.get('artist') === 'string' ? formData.get('artist') as string : '',
+            name: typeof formData.get('name') === 'string' ? formData.get('name') as string : '',
+            cover: typeof formData.get('cover') === 'string' ? formData.get('cover') as string : '',
         }
         const validatedData = albumSchema.safeParse(rawData)
 
@@ -57,15 +59,22 @@ export async function submitAlbum(prevState: ActionResponse | null, formData: Fo
             }
         }
         try {
-            await db.insert(albums)
-                .values({
-                    name: validatedData.data.name,
-                    artist: validatedData.data.artist,
-                    coverUrl: validatedData.data.cover
-
-                })
-
-            console.log('Album submitted:', validatedData.data)
+            const { name, artist, cover } = validatedData.data;
+            // A single SQLite statement makes the duplicate check atomic, including
+            // concurrent submissions. No changes to existing catalog rows are needed.
+            const saved = await db.all<{ id: number }>(sql`
+                INSERT INTO ${albums} (name, artist, cover_url)
+                SELECT ${name}, ${artist}, ${cover || null}
+                WHERE NOT EXISTS (
+                    SELECT 1 FROM ${albums}
+                    WHERE lower(trim(${albums.name})) = lower(${name})
+                      AND lower(trim(${albums.artist})) = lower(${artist})
+                )
+                RETURNING id
+            `);
+            if (saved.length === 0) {
+                return { success: false, message: 'This artist and album are already in the curated catalog', inputs: rawData };
+            }
         } catch (e: any) {
             console.log('Error:', e)
             if (e.code === 'SQLITE_CONSTRAINT') {
@@ -80,8 +89,8 @@ export async function submitAlbum(prevState: ActionResponse | null, formData: Fo
             }
         }
 
-        //save data
-        console.log('Album submitted:', validatedData.data)
+        revalidatePath('/albums');
+        revalidatePath('/me/listening');
 
         return {
             success: true,

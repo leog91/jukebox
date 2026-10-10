@@ -9,7 +9,7 @@ export async function Header() {
   const { userId } = await auth();
 
   return (
-    <div className="flex py-5 items-center  mx-auto justify-around  max-w-2xl  ">
+    <div className="flex flex-wrap gap-4 px-4 py-5 items-center mx-auto justify-around max-w-2xl">
       <div>
         <Link href="/">
           <HomeIcon />
@@ -44,6 +44,10 @@ export async function Header() {
           </Link>
         </div>
       ) : null}
+
+      <Link className="bg-white text-black rounded-full p-3 font-semibold hover:bg-gray-300" href="/listening">
+        Listening
+      </Link>
 
       <div className="flex items-center   justify-center">
         {userId ? (
